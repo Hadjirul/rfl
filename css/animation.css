@@ -1,0 +1,46 @@
+
+@keyframes fadeInBackground {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.landing {
+    animation: fadeInBackground 1s ease-in-out forwards; 
+}
+.paragraph-doc, .paragraph-doc-2, .paragraph {
+    opacity: 0;
+}
+.animate-left {
+    animation: slideFromLeft 0.8s ease-out forwards;
+}
+.animate-left-1 {
+    animation: slideFromLeft 1s ease-out forwards;
+}
+.animate-right {
+    animation: slideFromRight 0.8s ease-out forwards;
+}
+
+@keyframes slideFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

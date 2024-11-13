@@ -1,0 +1,46 @@
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+.navbar {
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+
+
+.container {
+    margin-top: 20px;
+    height: 100vh; /* Full height of the viewport */
+    width: 100%; /* Full width of the viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('images/homepage.jpg');
+    background-size: cover; /* Ensure background covers the container */
+    background-position: center; /* Center the background image */
+}
+
+.jumbotron {
+    background-color: rgba(255, 255, 255, 0.7); /* Slight transparency */
+    margin: 0; /* Remove margin to fill container */
+    padding: 20px; /* Add some padding */
+}
+
+/* Default hidden state for animation */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(50px); /* Start from 50px down */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Active state when the element is in view */
+.active {
+    opacity: 1;
+    transform: translateY(0); /* Move to its original position */
+}
+
