@@ -74,8 +74,8 @@
 						<div class="row">
 							<div class="col-lg-3 col-md-3 col-12">
 								<!-- Start Logo -->
-								<div class="logo">
-									<a href="index.php"><img src="../img/logo.jpg" alt="#"></a>
+								<div class="logo m-0">
+									<a href="index.php"><img src="../img/logo.jpg" alt="#" class = "m-0"></a>
 								</div>
 								<!-- End Logo -->
 								<!-- Mobile Nav -->
@@ -116,7 +116,7 @@
 											</li>
 
 											<div class="get-quote">
-												<a href="appointment.php" class="btn">Book Appointment</a>	
+												<a href="../appointment/appointment.php" class="btn">Book Appointment</a>	
 											</div>
 											<li><a href="#"></a></li>
 										
