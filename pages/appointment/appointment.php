@@ -1,406 +1,374 @@
 <?php
+session_start();
 include '../header.php';
 ?>
 
-<div class="formbold-main-wrapper">
-  <!-- Author: FormBold Team -->
-  <!-- Learn More: https://formbold.com -->
-  <div class="formbold-form-wrapper">
-    <form action="https://formbold.com/s/FORM_ID" method="POST">
-        <div class="formbold-steps">
+<div class="form-container">
+  <div class="form-wrapper">
+    <form action="" method="POST">
+      <h1 class = "form-title">Appointment Form</h1>
+        <div class="steps" style = "margin-bottom:40px;">
             <ul>
-                <li class="formbold-step-menu1 active">
-                    <span>1</span>
-                    Sign Up
+                <li class="step-menu active" id="step1">
+                    <span>1</span> Personal Information   
                 </li>
-                <li class="formbold-step-menu2">
-                    <span>2</span>
-                    Message
+                <li class="step-menu" id="step2">
+                    <span>2</span> History
                 </li>
-                <li class="formbold-step-menu3">
-                    <span>3</span>
-                    Confirm
+                <li class="step-menu" id="step3">
+                    <span>3</span> Confirmation
                 </li>
             </ul>
         </div>
 
-        <div class="formbold-form-step-1 active">
-          <div class="formbold-input-flex">
-            <div>
-                <label for="firstname" class="formbold-form-label"> First name </label>
-                <input
-                type="text"
-                name="firstname"
-                placeholder="Andrio"
-                id="firstname"
-                class="formbold-form-input"
-                />
+        <div class="form-step" id="form-step-1">
+        <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" name="first_name" class="form-control" id="firstName" placeholder="First name" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="middleName">Middle Name:</label>
+                    <input type="text" name="middle_name" class="form-control" id="middleName" placeholder="Middle name">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" name="last_name" class="form-control" id="lastName" placeholder="Last name" required>
+                </div>
             </div>
-            <div>
-                <label for="lastname" class="formbold-form-label"> Last name </label>
-                <input
-                type="text"
-                name="lastname"
-                placeholder="Dolee"
-                id="lastname"
-                class="formbold-form-input"
-                />
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="birthdate">Birthdate:</label>
+                    <input type="date" class="form-control" id="birthdate" name="birthdate" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone number" required>
+                </div>
             </div>
-          </div>
+            <div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="gender">Gender</label>
+        <select name="gender" class="form-control" id="gender" required>
+            <option value="" disabled selected>Select your gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+    </div>
+    <div class="form-group col-md-6">
+        <label for="email">Email</label>
+        <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email" required>
+    </div>
+</div>
+
+
+            <!-- Address -->
+            <div class="form-row">
+                <div class="form-group col-6">
+                    <label for="streetAddress">Street Address:</label>
+                    <input type="text" class="form-control" id="street_address" name="street_address" required>
+                </div>
+                <div class="form-group col-6">
+                    <label for="streetAddress2">Street Address Line 2:</label>
+                    <input type="text" class="form-control" id="street_address_line_2" name="street_address_line_2" placeholder="Optional">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-4">
+                    <label for="city">City:</label>
+                    <input type="text" class="form-control" id="city" name="city" required>
+                </div>
+                <div class="form-group col-4">
+                    <label for="province">Province:</label>
+                    <input type="text" class="form-control" id="province" name="province" required>
+                </div>
+                <div class="form-group col-4">
+                    <label for="province">Zip Code:</label>
+                    <input type="text" class="form-control" id="zip_code" name="zip_code" required>
+                </div>
+            </div>
+
+        </div>
+
+
+        
+
+        <div class="form-step" id="form-step-2">
+            <div>
+                <label for="ocular_history">Occular History:</label>
+                <input type="text" name="ocular_history" id="ocular_history" placeholder="Please type your answer" class="multi-line-input">
+            </div>
+
+            <div>
+                <label for="family_health_history">Family Health History:</label>
+                <input type="text" name="family_health_history" id="family_health_history" placeholder="Please type your answer" class="multi-line-input">
+            </div>
+
+            <div>
+                <label for="appointment_reason">Reason for Appointment:</label>
+                <input type="text" name="appointment_reason" id="appointment_reason" placeholder="Please type your answer" class="multi-line-input">
+            </div>
+        </div>
+
+
+
+
+
+
   
-          <div class="formbold-input-flex">
-              <div>
-                  <label for="dob" class="formbold-form-label"> Date of Birth </label>
-                  <input 
-                  type="date" 
-                  name="dob" 
-                  id="dob" 
-                  class="formbold-form-input"
-                  />
-              </div>
-              <div>
-                  <label for="email" class="formbold-form-label"> Email Address </label>
-                  <input
-                  type="email"
-                  name="email"
-                  placeholder="example@mail.com"
-                  id="email"
-                  class="formbold-form-input"
-                  />
-              </div>
-          </div>
-  
-          <div>
-              <label for="address" class="formbold-form-label"> Address </label>
-              <input
-              type="text"
-              name="address"
-              id="address"
-              placeholder="Flat 4, 24 Castle Street, Perth, PH1 3JY"
-              class="formbold-form-input"
-              />
-          </div>
+    <div class="form-step" id="form-step-3">
+        <div class="form-group">
+            <label for="doctor">Choose Doctor:</label>
+            <select name="dcotr" class="form-control" id="doctor" required>
+                <option value="" disabled selected>Select your doctor</option>
+                <option value="">Dr. Rosalinda Lim</option>
+            </select>
         </div>
 
-        <div class="formbold-form-step-2">
-          <div>
-            <label for="message" class="formbold-form-label"> Message </label>
-            <textarea
-              rows="6"
-              name="message"
-              id="message"
-              placeholder="Type your message"
-              class="formbold-form-input"
-            ></textarea>
-          </div>
+        <div class="form-group">
+            <label for="service">Choose Service:</label>
+            <select name="service" class="form-control" id="service" required>
+                <option value="" disabled selected>Select service you need</option>
+                <option value="">Lense Type</option>
+                <option value="">Frame Selection</option>
+                <option value="">Custom Fitting</option>
+                <option value="">Lense Type</option>
+                <option value="">Digital Retinal Imaging</option>
+                <option value="">Visual Activity Test</option>
+                <option value="">Refraction Assessment</option>
+                <option value="">Eye Pressure Measurement</option>
+                <option value="">Foreign Body Removal</option>  
+                <option value="">Anti-Reflective Coating</option>
+                <option value="">Scratch-Resistant Coating</option>
+                <option value="">UV Protection</option>
+            </select>
+        </div>
+          
+        <div>
+    <label for="date">Choose Date:</label>
+    <input type="date" name="date" id="date" placeholder="Select a date">
+      </div>
+
+      <div class = "mb-3">
+          <label for="time">Choose Time:</label>
+          <input type="time" name="time" id="time" placeholder="Select a time">
+      </div >
+          
         </div>
 
-        <div class="formbold-form-step-3">
-          <div class="formbold-form-confirm">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
-            </p>
 
-            <div>
-              <button class="formbold-confirm-btn active">
-                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="11" cy="11" r="10.5" fill="white" stroke="#DDE3EC"/>
-                <g clip-path="url(#clip0_1667_1314)">
-                <path d="M9.83343 12.8509L15.1954 7.48828L16.0208 8.31311L9.83343 14.5005L6.12109 10.7882L6.94593 9.96336L9.83343 12.8509Z" fill="#536387"/>
-                </g>
-                <defs>
-                <clipPath id="clip0_1667_1314">
-                <rect width="14" height="14" fill="white" transform="translate(4 4)"/>
-                </clipPath>
-                </defs>
-                </svg>
-                Yes! I want it.
-              </button>
-
-              <button class="formbold-confirm-btn">
-                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="11" cy="11" r="10.5" fill="white" stroke="#DDE3EC"/>
-                <g clip-path="url(#clip0_1667_1314)">
-                <path d="M9.83343 12.8509L15.1954 7.48828L16.0208 8.31311L9.83343 14.5005L6.12109 10.7882L6.94593 9.96336L9.83343 12.8509Z" fill="#536387"/>
-                </g>
-                <defs>
-                <clipPath id="clip0_1667_1314">
-                <rect width="14" height="14" fill="white" transform="translate(4 4)"/>
-                </clipPath>
-                </defs>
-                </svg>
-                No! I don’t want it.
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="formbold-form-btn-wrapper">
-          <button class="formbold-back-btn">
-            Back
-          </button>
-
-          <button class="formbold-btn">
-              Next Step
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g clip-path="url(#clip0_1675_1807)">
-              <path d="M10.7814 7.33312L7.20541 3.75712L8.14808 2.81445L13.3334 7.99979L8.14808 13.1851L7.20541 12.2425L10.7814 8.66645H2.66675V7.33312H10.7814Z" fill="white"/>
-              </g>
-              <defs>
-              <clipPath id="clip0_1675_1807">
-              <rect width="16" height="16" fill="white"/>
-              </clipPath>
-              </defs>
-              </svg>
-          </button>
+        <div class="form-btn-wrapper">
+          <button type="button" class="back-btn" id="back-btn">Back</button>
+          <button type="button" class="next-btn" id="next-btn">Next Step</button>
         </div>
     </form>
   </div>
 </div>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    font-family: "Inter", sans-serif;
-  }
-  .formbold-main-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 48px;
-  }
 
-  .formbold-form-wrapper {
-    margin: 0 auto;
-    max-width: 550px;
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+  }
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+  }
+.steps{
+
+  m
+}
+  h1{
+    text-align: center;
+    margin: 30px;
+  }
+  .form-wrapper {
+    max-width: 650px;
     width: 100%;
     background: white;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   }
-
-  .formbold-steps {
-    padding-bottom: 18px;
-    margin-bottom: 35px;
-    border-bottom: 1px solid #DDE3EC;
-  }
-  .formbold-steps ul {
+  .steps ul {
+    display: flex;
+    justify-content: space-around;
     padding: 0;
-    margin: 0;
+    margin-bottom: 20px;
     list-style: none;
-    display: flex;
-    gap: 40px;
   }
-  .formbold-steps li {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    font-weight: 500;
+
+  .form-group{
+    height:70px;
+  }
+  input{
+    height:40px;
+  }
+  .steps li {
+    text-align: center;
     font-size: 16px;
-    line-height: 24px;
-    color: #536387;
+    color: #555;
+    font-weight: bold;
   }
-  .formbold-steps li span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #DDE3EC;
+  .step-menu.active span, .step-menu.active {
+    color: #6A64F1;
+  }
+  .step-menu span {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
-    color: #536387;
+    background-color: #ddd;
+    color: #fff;
+    text-align: center;
+    line-height: 35px;
   }
-  .formbold-steps li.active {
-    color: #07074D;;
-  }
-  .formbold-steps li.active span {
-    background: #6A64F1;
-    color: #FFFFFF;
-  }
-
-  .formbold-input-flex {
+  .form-step { display: none; }
+  .form-step.active { display: block; }
+  .input-flex {
     display: flex;
-    gap: 20px;
-    margin-bottom: 22px;
+    justify-content: space-between;
+    margin-bottom: 15px;
   }
-  .formbold-input-flex > div {
-    width: 50%;
-  }
-  .formbold-form-input {
-    width: 100%;
-    padding: 13px 22px;
-    border-radius: 5px;
-    border: 1px solid #DDE3EC;
-    background: #FFFFFF;
-    font-weight: 500;
-    font-size: 16px;
-    color: #536387;
-    outline: none;
-    resize: none;
-  }
-  .formbold-form-input:focus {
-    border-color: #6a64f1;
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
-  }
-  .formbold-form-label {
-    color: #07074D;
-    font-weight: 500;
+  .input-flex div { width: 48%; }
+  label {
     font-size: 14px;
-    line-height: 24px;
+    color: #333;
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
-
-  .formbold-form-confirm {
-    border-bottom: 1px solid #DDE3EC;
-    padding-bottom: 35px;
+  input, textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
   }
-  .formbold-form-confirm p {
+  .form-confirm p {
     font-size: 16px;
-    line-height: 24px;
-    color: #536387;
-    margin-bottom: 22px;
-    width: 75%;
+    color: #555;
   }
-  .formbold-form-confirm > div {
+  .form-btn-wrapper {
     display: flex;
-    gap: 15px;
-  }
-
-  .formbold-confirm-btn {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: #FFFFFF;
-    border: 0.5px solid #DDE3EC;
-    border-radius: 5px;
-    font-size: 16px;
-    line-height: 24px;
-    color: #536387;
-    cursor: pointer;
-    padding: 10px 20px;
-    transition: all .3s ease-in-out;
-  }
-  .formbold-confirm-btn {
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
-  }
-  .formbold-confirm-btn.active {
-    background: #6A64F1;
-    color: #FFFFFF;
-  }
-
-  .formbold-form-step-1,
-  .formbold-form-step-2,
-  .formbold-form-step-3 {
-    display: none;
-  }
-  .formbold-form-step-1.active,
-  .formbold-form-step-2.active,
-  .formbold-form-step-3.active {
-    display: block;
-  }
-
-  .formbold-form-btn-wrapper {
-    display: flex;
-    align-items: center;
     justify-content: flex-end;
-    gap: 25px;
-    margin-top: 25px;
+    gap: 10px;
   }
-  .formbold-back-btn {
-    cursor: pointer;
-    background: #FFFFFF;
+  .back-btn, .next-btn {
+    padding: 10px 20px;
     border: none;
-    color: #07074D;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
-    display: none;
-  }
-  .formbold-back-btn.active {
-    display: block;
-  }
-  .formbold-btn {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 16px;
-    border-radius: 5px;
-    padding: 10px 25px;
-    border: none;
-    font-weight: 500;
-    background-color: #6A64F1;
     color: white;
+    background-color: #6A64F1;
+    border-radius: 4px;
     cursor: pointer;
   }
-  .formbold-btn:hover {
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+
+  .form-control {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        width: 100%;
+    }
+    .custom-select {
+        appearance: none;           /* Remove default arrow */
+        -webkit-appearance: none;    /* Remove arrow in Safari */
+        background-color: #fff;
+        padding-right: 30px;         /* Add padding for arrow */
+        background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5"%3E%3Cpath fill="%23000000" d="M0 0l5 5 5-5z"/%3E%3C/svg%3E');
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+
+    .form-title {
+    font-size: 37px;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 20px;
   }
 
+  /* Add the blue line below the heading */
+  .form-title::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 3px; /* Thickness of the line */
+    background-color: blue; /* Color of the line */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .steps{
+    list-style: none;
+    padding: 0;
+    margin-bottom: 10px;
+    position: relative;
+    padding-bottom: .5px; /* Space for the line */
+  }
+
+  /* Blue line below the steps-list */
+  .steps::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 3px; /* Thickness of the line */
+    background-color: blue; /* Color of the line */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  .multi-line-input {
+    height: 60px; /* Adjust height to simulate rows */
+    padding: 10px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+  .confirm-btn.active { background-color: #6A64F1; color: white; }
 </style>
+
 <script>
-  const stepMenuOne = document.querySelector('.formbold-step-menu1')
-  const stepMenuTwo = document.querySelector('.formbold-step-menu2')
-  const stepMenuThree = document.querySelector('.formbold-step-menu3')
+  document.addEventListener("DOMContentLoaded", function() {
+    const steps = document.querySelectorAll(".step-menu");
+    const formSteps = document.querySelectorAll(".form-step");
+    const nextBtn = document.getElementById("next-btn");
+    const backBtn = document.getElementById("back-btn");
 
-  const stepOne = document.querySelector('.formbold-form-step-1')
-  const stepTwo = document.querySelector('.formbold-form-step-2')
-  const stepThree = document.querySelector('.formbold-form-step-3')
+    let currentStep = 0;
+    updateForm();
 
-  const formSubmitBtn = document.querySelector('.formbold-btn')
-  const formBackBtn = document.querySelector('.formbold-back-btn')
-
-  formSubmitBtn.addEventListener("click", function(event){
-    event.preventDefault()
-    if(stepMenuOne.className == 'formbold-step-menu1 active') {
-        event.preventDefault()
-
-        stepMenuOne.classList.remove('active')
-        stepMenuTwo.classList.add('active')
-
-        stepOne.classList.remove('active')
-        stepTwo.classList.add('active')
-
-        formBackBtn.classList.add('active')
-        formBackBtn.addEventListener("click", function (event) {
-          event.preventDefault()
-
-          stepMenuOne.classList.add('active')
-          stepMenuTwo.classList.remove('active')
-
-          stepOne.classList.add('active')
-          stepTwo.classList.remove('active')
-
-          formBackBtn.classList.remove('active')
-
-        })
-
-      } else if(stepMenuTwo.className == 'formbold-step-menu2 active') {
-        event.preventDefault()
-
-        stepMenuTwo.classList.remove('active')
-        stepMenuThree.classList.add('active')
-
-        stepTwo.classList.remove('active')
-        stepThree.classList.add('active')
-
-        formBackBtn.classList.remove('active')
-        formSubmitBtn.textContent = 'Submit'
-      } else if(stepMenuThree.className == 'formbold-step-menu3 active') {
-        document.querySelector('form').submit()
+    nextBtn.addEventListener("click", (event) => {
+      event.preventDefault(); // Prevent form submission
+      if (currentStep < steps.length - 1) {
+        currentStep++;
+        updateForm();
+      } else {
+        document.querySelector("form").submit();
       }
-  })
-    
+    });
+
+    backBtn.addEventListener("click", () => {
+      if (currentStep > 0) {
+        currentStep--;
+        updateForm();
+      }
+    });
+
+    function updateForm() {
+      formSteps.forEach((step, index) => {
+        step.classList.toggle("active", index === currentStep);
+        steps[index].classList.toggle("active", index === currentStep);
+      });
+      backBtn.style.display = currentStep === 0 ? "none" : "inline-block";
+      nextBtn.textContent = currentStep === steps.length - 1 ? "Submit" : "Next Step";
+    }
+  });
+
 
   
 </script>
 
-
 <?php
-	include '../script.php';
-	?>
+include '../script.php';
+?>

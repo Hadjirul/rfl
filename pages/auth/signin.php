@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION['first_name'] = $user['first_name'];
                         $_SESSION['role'] = 'user';
 
-                        header("Location: ../index.php");
+                        header("Location: ../home/index.php");
                         exit();
                     } else {
                         $error_message = "Invalid password for user account.";

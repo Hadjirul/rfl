@@ -1,0 +1,264 @@
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.brand-color{
+    color: #0008BD !important;
+}
+
+.brand-bg-color{
+    background-color: #0008BD !important;
+    color: white !important;
+    border: none;
+}
+
+.brand-bg-color:hover{
+    background-color: #0008BD;
+    color: white;
+}
+
+.landing-page .navbar-light .navbar-nav .nav-link{
+    color: #0008BD;
+    font-size: 18px;
+}
+
+.landing-page .navbar-light .navbar-nav .nav-link.active, .landing-page .navbar-light .navbar-nav .show>.nav-link{
+
+    color: #0008BD;
+}
+
+.landing-page .navbar-light .navbar-nav .nav-link.active:hover, .landing-page .navbar-light .navbar-nav .nav-link:hover{
+    color: white;
+    background-color: #0008BD;
+}
+
+header.landing-page{
+    box-shadow: 2px 2px 4px #0008BD;
+}
+
+.banner{
+    display: flex;
+    background: linear-gradient(#0008BD, rgba(0, 0, 0, 0.1)), url('../img/newback2.jpg');
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: calc(100vh - 86px);
+    flex-direction: column;
+    justify-content: center;
+}
+
+span.spicy{
+    color: #0008BD;
+}
+
+span.tasty{
+    color: #0008BD;
+}
+
+.btn-order, .btn-order:active, .btn-order:visited{
+    width: fit-content;
+    background-color: white;
+    border: 1px solid #0008BD;
+    color: #0008BD;
+    border-radius: 15px;
+}
+
+.btn-order:hover{
+    background-color: #0008BD;
+    border: 1px solid #0008BD;
+    color: white;
+}
+
+.fa.fa-star{
+    color: #E9B824;
+}
+
+.add-to-cart{
+    position: relative;
+    text-align: center;
+    width: 100%;
+    display: block;
+}
+
+.btn-add-to-cart, .btn-add-to-cart:focus, .btn-add-to-cart:active{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #0008BD;
+    border-color: #0008BD;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    display: none;
+}
+
+.dropdown-profile.dropdown-menu[data-bs-popper]{
+    right: 0;
+    left: auto;
+}
+
+.color-white{
+    color: white !important;
+}
+
+.admin-header{
+    height: 55px;
+    display: flex;
+    align-items: center;
+}
+
+#sidebarMenu .fa{
+    width: 20px;
+}
+.sidebar .nav-link:hover{
+    color: #0008BD;
+}
+.sidebar .nav-link.active{
+    border-right: solid;
+    border-color:#0008BD ;
+    border-right-width: 5px;
+    color: #0008BD;
+}
+
+.card-body .fa{
+    color: #0008BD; 
+}
+
+.sidebar .nav-link {
+    font-weight: 500;
+    color: #333;
+}
+  
+.sidebar .nav-link .feather {
+    margin-right: 4px;
+    color: #727272;
+}
+
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 48px 0 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+  
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.card.admin-rounded{
+    border-radius: 15px;
+}
+
+.btn-add{
+    border-radius: 50%;
+    border-color: #0008BD;
+    background-color: white;
+    margin-left: 10px;
+    color: #0008BD;
+}
+
+.btn-add:hover{
+    background-color: #0008BD;
+    border-color: #0008BD;
+}
+
+.page-item.active .page-link {
+    background-color: #0008BD;
+    border-color: #0008BD;
+}
+
+.page-link{
+    color: #0008BD;
+}
+
+.page-link:hover{
+    color: #0008BD;
+}
+
+.signup-banner{
+    background-image: url('../img/signupbanner.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.btn-create-account{
+    width: 100%;
+}
+
+@media screen and (min-width: 992px) {
+    .search-keyword{
+        max-width: 300px;
+    }
+}
+.container{
+    background-image: url('../img/Rectangle\ 4.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 16em;
+}
+.btn-primary{
+    width: 340px;
+    background-color: #5654C2 ;
+    padding-top: 3px;
+    padding-bottom: 0px;
+    
+}
+.font-weight-bolder{
+    font-weight: bolder;
+}
+.card-title{
+    font-size: 2.2em;
+    color:#0008BD;
+}
+.card-text{
+    font-size: 1.3em;
+    font-weight: 500;
+    color: #3f3e3e;
+}
+.col-lg-6 .pb-0{
+    background-color: #D9D9D9;
+    border-radius: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.navbar-brand{
+    font-family: 'Kau';
+}
+.fa-trash{
+    color: black;   
+}
+.col-form-label{
+    width: 100px;
+}
+.btn-close.ms-auto:hover {
+    color: blue !important;
+}
+
+.btn.btn-primary.px-3{
+    width: 60px;
+    height: 40px;
+    font-size: 1em;
+    padding-bottom: 4px;
+}
+.btn-secondary .w-10{
+    width: 2em;
+}

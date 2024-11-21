@@ -569,6 +569,60 @@ body{
 	color:#1A76D1;
 	border-color:#e6e6e6;
 }
+
+
+
+
+
+.modal .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.5); /* Dimmed background */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    border-radius: 8px;
+    position: relative; /* Ensures child elements (close button) are positioned relative to this container */
+}
+
+/* Close Button */
+.modal .close {
+    position: absolute; /* Positions the button relative to modal content */
+    top: 10px; /* 10px from the top edge */
+    right: 15px; /* 15px from the right edge */
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal .close:hover,
+.modal .close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+/* Primary Color for Welcome Text */
+.modal h3 {
+    color: #007bff; /* Bootstrap primary color */
+    font-size: 24px;
+    margin-bottom: 10px;
+}
 /* Header Sticky */
 .header.sticky .header-inner{
 	position:fixed;

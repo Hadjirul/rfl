@@ -1,7 +1,6 @@
 
 <?php 
 include '../../database/connection.php';
-// Variable to control the modal display
 $showModal = false; 
 $error_message = "";
 
@@ -60,6 +59,7 @@ $conn->close();
 
 <?php
 include "../header.php";
+
 ?>
 <style>
         body {
@@ -162,7 +162,7 @@ include "../header.php";
             </div>
 
             <!-- Gender and Email on the same row -->
-            <div class="form-row">
+    <div class="form-row">
     <div class="form-group col-md-6">
         <label for="gender">Gender</label>
         <select name="gender" class="form-control" id="gender" required>
