@@ -40,6 +40,7 @@ if (isset($_SESSION['first_name']) && !isset($_SESSION['welcome_shown'])) {
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 
 <body>  

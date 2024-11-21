@@ -37,3 +37,4 @@
 		<script src="../js/bootstrap.min.js"></script>
 		<!-- Main JS -->
 		<script src="../js/main.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>

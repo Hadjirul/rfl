@@ -166,6 +166,35 @@ include '../header.php';
   </div>
 </div>
 
+
+<div id="appointmentModal" class="modal" tabindex="-1" role="dialog" style="display: none;">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Appointment Options</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Is this appointment for you or someone else?</p>
+        <div class="form-group">
+          <button id="appointSelfBtn" class="btn btn-primary btn-block">For Myself</button>
+          <button id="appointOthersBtn" class="btn btn-secondary btn-block">For Someone Else</button>
+        </div>
+        <div id="patientCountGroup" class="form-group" style="display: none;">
+          <label for="patientCount">How many patients do you want to appoint?</label>
+          <input type="number" id="patientCount" class="form-control" min="1" placeholder="Enter number of patients">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="confirmBtn" class="btn btn-success" style="display: none;">Confirm</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -326,9 +355,97 @@ include '../header.php';
 }
 
   .confirm-btn.active { background-color: #6A64F1; color: white; }
+
+  .modal-content {
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .modal-header {
+    border-bottom: 2px solid blue;
+  }
+
+  .modal-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #6A64F1;
+  }
+
+  .btn-primary,
+  .btn-secondary,
+  .btn-success {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  .btn-primary {
+    background-color: #6A64F1;
+    border: none;
+  }
+
+  .btn-secondary {
+    background-color: #ddd;
+    border: none;
+  }
+
+  .btn-success {
+    background-color: green;
+    border: none;
+  }
+
+  .form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .form-control {
+    border-radius: 4px;
+    height: 40px;
+    font-size: 16px;
+  }
 </style>
 
-<script>
+<script>  
+
+document.addEventListener("DOMContentLoaded", function () {
+    const modal = document.getElementById("appointmentModal");
+    const appointSelfBtn = document.getElementById("appointSelfBtn");
+    const appointOthersBtn = document.getElementById("appointOthersBtn");
+    const patientCountGroup = document.getElementById("patientCountGroup");
+    const confirmBtn = document.getElementById("confirmBtn");
+
+    // Show modal when page loads
+    $(modal).modal({ backdrop: "static", keyboard: false });
+
+    appointSelfBtn.addEventListener("click", () => {
+      patientCountGroup.style.display = "none";
+      confirmBtn.style.display = "block";
+    });
+
+    appointOthersBtn.addEventListener("click", () => {
+      patientCountGroup.style.display = "block";
+      confirmBtn.style.display = "block";
+    });
+
+    confirmBtn.addEventListener("click", () => {
+      const patientCount = document.getElementById("patientCount").value;
+
+      if (appointOthersBtn.classList.contains("active") && !patientCount) {
+        alert("Please specify the number of patients.");
+        return;
+      }
+
+      $(modal).modal("hide");
+    });
+  });
+
+
+
+
+
   document.addEventListener("DOMContentLoaded", function() {
     const steps = document.querySelectorAll(".step-menu");
     const formSteps = document.querySelectorAll(".form-step");
@@ -364,9 +481,6 @@ include '../header.php';
       nextBtn.textContent = currentStep === steps.length - 1 ? "Submit" : "Next Step";
     }
   });
-
-
-  
 </script>
 
 <?php
