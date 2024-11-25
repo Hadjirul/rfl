@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost"; // Usually 'localhost'
-$username = "root"; // Your MySQL username
-$password = ""; // Your MySQL password
-$dbname = "rfl"; // The database name you created
+$servername = "localhost"; 
+$username = "root"; 
+$password = ""; 
+$dbname = "rfl"; 
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -11,4 +11,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
+// Set character set to UTF-8 for consistent encoding
+$conn->set_charset("utf8");
 ?>

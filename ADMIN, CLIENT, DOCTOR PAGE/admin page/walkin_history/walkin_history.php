@@ -1,3 +1,8 @@
+<?php
+session_start();
+include '../../include/header.admin.php';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,9 +20,7 @@
     require_once('../../include/head.php');
 ?>
 <body>
-    <?php
-        require_once('../../include/header.admin.php');
-    ?>
+
     <main>
         <div class="container-fluid">
             <div class="row">

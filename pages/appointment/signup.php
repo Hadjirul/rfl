@@ -40,8 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email'])) {
                     VALUES ('$first_name', '$last_name', '$email', '$phone', '$street_address', '$street_address_line_2', '$city', '$province', '$zip_code', '$hashed_password', NOW())";
 
             if ($conn->query($sql) === TRUE) {
-                // Redirect after successzful registration to prevent form resubmission
-                header("Location: signin.php");
+                // Redirect after successful registration to prevent form resubmission
+                header("Location: success.php");
                 exit();
             } else {
                 $error_message = "Error: " . $sql . "<br>" . $conn->error;
@@ -62,22 +62,18 @@ include "../header.php";
 
 ?>
 <style>
-body {
-    background-image: url(../img/backround.jpg);
-    background-size: cover;
-     /* Solid background for the body */
-}
+        body {
+            background-color: #ffffff;
+        }
 
-.signup-form-container {
-    max-width: 500px; /* Increased width */
-    margin: auto;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-    border: 1px solid #000000;
-    background-color: #ffffff; /* Solid white background for the form */
-    opacity: 1; /* Ensure full opacity */
-}
+        .signup-form-container {
+            max-width: 500px; /* Increased width */
+            margin: auto;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #000000;
+        }
 
         .centered-section {
             display: flex;

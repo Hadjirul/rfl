@@ -1,5 +1,5 @@
 <?php
-// Check if the user is logged in and if the modal has not been shown
+ob_start();  
 if (isset($_SESSION['first_name']) && !isset($_SESSION['welcome_shown'])) {
     $_SESSION['welcome_shown'] = true; // Set the flag to prevent showing the modal again
     $showWelcomeModal = true;
@@ -44,19 +44,8 @@ if (isset($_SESSION['first_name']) && !isset($_SESSION['welcome_shown'])) {
 </head>
 
 <body>  
-	<div class="preloader">
-            <div class="loader">
-                <div class="loader-outter"></div>
-                <div class="loader-inner"></div>
 
-                <div class="indicator"> 
-                    <svg width="16px" height="12px">
-                        <polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
-                        <polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
-                    </svg>
-                </div>
-            </div>
-        </div>
+
 		<header class="header">
         <div class="header-inner">
             <div class="container">
@@ -94,14 +83,23 @@ if (isset($_SESSION['first_name']) && !isset($_SESSION['welcome_shown'])) {
 											</ul>
 										</li>
 							<!-- Products Dropdown -->
-                                        <li class="<?= in_array(basename($_SERVER['PHP_SELF']), ['404.php']) ? 'active' : ''; ?>">
+                                        <li class="<?= in_array(basename($_SERVER['PHP_SELF']), ['eyeglasses_frame.php', 'lenses.php', 'contact_lenses.php','sunglasses.php','accessories.php']) ? 'active' : ''; ?>">
                                             <a href="#">Products <i class="icofont-rounded-down"></i></a>
                                             <ul class="dropdown">
-                                                <li><a href="404.php">Eye Glass Frame</a></li>
-                                                <li><a href="404.php">Lenses</a></li>
-                                                <li><a href="404.php">Contact Lenses</a></li>
-                                                <li><a href="404.php">Sunglasses</a></li>
-                                                <li><a href="404.php">Accessories</a></li>
+                                               <li class="<?= $current_page == 'eyeglasses_frame.php' ? 'active' : ''; ?>">
+                                                    <a href="../products/eyeglasses_frame.php">Eye Glass Frame</a>
+                                                </li>
+                                                <li class="<?= $current_page == 'lenses.php' ? 'active' : ''; ?>">
+                                                    <a href="../products/lenses.php">Lenses</a>
+                                                </li>
+                                                <li class="<?= $current_page == 'contact_lenses.php' ? 'active' : ''; ?>">
+                                                    <a href="../products/contact_lenses.php">Contact Lenses</a>
+                                                </li>
+                                                <li class="<?= $current_page == 'sunglasses.php' ? 'active' : ''; ?>">
+                                                    <a href="../products/sunglasses.php">Sunglasses</a>
+                                                </li>
+                                                <li class="<?= $current_page == 'accessories.php' ? 'active' : ''; ?>">
+                                                    <a href="../products/accessories.php">Accessories</a></li>
                                             </ul>
                                         </li>
                                         <!-- Pages Dropdown -->
@@ -126,7 +124,7 @@ if (isset($_SESSION['first_name']) && !isset($_SESSION['welcome_shown'])) {
 													<span class="close" onclick="closeModal()">&times;</span>
 													<h3>Please Log In</h3>
 													<p>You need to be logged in to book an appointment. Please sign in or sign up to continue.</p>
-													<a href="../auth/signin.php" class="btn btn-primary mt-3">Log In</a>
+                                                    <button  class="btn btn-primary btn-block" onclick="window.location.href='../auth/signin.php'">Login</button>
 												</div>
 											</div>
 
@@ -164,9 +162,11 @@ if (isset($_SESSION['first_name']) && !isset($_SESSION['welcome_shown'])) {
                                                 </div>
                                             </div>
                                         <?php else: ?>
-                                            <li><a href="../auth/signin.php">Signin</a></li>
+                                            <li class="<?= basename($_SERVER['PHP_SELF']) == 'signin.php' ? 'active' : ''; ?>"><a href="../auth/signin.php">Signin</a>
+                                        </li>
+                                        <?php $current_page = basename($_SERVER['PHP_SELF']); ?>
                                             <div class="get-quote">
-                                                <a href="../auth/signup.php" class="btn">Signup</a>    
+                                                <a href="../auth/signup.php" class="btn  <?= $current_page == 'signup.php' ? 'active' : ''; ?>">Signup</a>    
                                             </div>
                                         <?php endif; ?>
                                     </ul>
@@ -185,7 +185,8 @@ if (isset($_SESSION['first_name']) && !isset($_SESSION['welcome_shown'])) {
 				<p>Are you sure you want to log out?</p>
 				<div>
 					<button onclick="closeModal()" class="btn btn-secondary mt-3">Cancel</button>
-					<a href="../auth/logout.php" class="btn btn-danger mt-3">Log Out</a>
+		
+                    <button type="button" class="btn btn-danger mt-3" onclick="window.location.href='../auth/logout.php'">Logout</button>
 				</div>
 			</div>
 		</div>

@@ -1,5 +1,5 @@
 <?php
-$con = mysqli_connect('localhost', 'root', '', 'cliniccare');
+$con = mysqli_connect('localhost', 'root', '', 'rfl');
 
 
 ?>

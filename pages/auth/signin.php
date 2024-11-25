@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['name'] = $admin['name'];
                 $_SESSION['role'] = 'admin';
 
-                header("Location: ../admin/src/index.php");
+                header("Location: ../../ADMIN, CLIENT, DOCTOR PAGE/admin page/appointment/appointment.php");
                 exit();
             } else {
                 $error_message = "Invalid password for admin account.";
@@ -95,7 +95,9 @@ $conn->close();
 
 <style>
         body {
-            background-color: #ffffff;
+            background-image: url(../img/backround.jpg);
+            background-size: cover;
+            /* Solid background for the body */
         }
 
         .login-form-container {
@@ -106,6 +108,8 @@ $conn->close();
             box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
             border: 1px solid #000000;
             margin-bottom: 1in;
+            background-color: #ffffff; /* Solid white background for the form */
+            opacity: 1; /* Ensure full opacity */
         }
 
         .centered-section {
