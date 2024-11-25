@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2024 at 03:55 PM
+-- Generation Time: Nov 25, 2024 at 05:46 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -68,6 +68,49 @@ INSERT INTO `appointmentdate` (`date_id`, `available_date`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `appointments`
+--
+
+CREATE TABLE `appointments` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `middle_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `birthdate` date NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `gender` enum('male','female','other') NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `street_address` varchar(255) NOT NULL,
+  `street_address_line_2` varchar(255) DEFAULT NULL,
+  `city` varchar(100) NOT NULL,
+  `province` varchar(100) NOT NULL,
+  `zip_code` varchar(20) NOT NULL,
+  `ocular_history` text DEFAULT NULL,
+  `family_health_history` text DEFAULT NULL,
+  `appointment_reason` text DEFAULT NULL,
+  `doctor` varchar(255) DEFAULT NULL,
+  `service` varchar(255) NOT NULL,
+  `date` date DEFAULT NULL,
+  `time` time DEFAULT NULL,
+  `status` enum('pending','approved','completed','cancelled') DEFAULT 'pending',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `appointments`
+--
+
+INSERT INTO `appointments` (`id`, `user_id`, `first_name`, `middle_name`, `last_name`, `birthdate`, `phone`, `gender`, `email`, `street_address`, `street_address_line_2`, `city`, `province`, `zip_code`, `ocular_history`, `family_health_history`, `appointment_reason`, `doctor`, `service`, `date`, `time`, `status`, `created_at`, `updated_at`) VALUES
+(108, 2, 'Jopel', '', 'Enriquez', '0000-00-00', '09380263077', 'male', 'jopel@gmail.com', 'Santol Drive', '', 'Zamboanga City', 'Zamboanga Del Sur', '7000', '', '', '', '', '', '0000-00-00', '00:00:00', 'completed', '2024-11-25 16:04:42', '2024-11-25 16:04:56'),
+(109, 2, 'Jopel', '', 'Enriquez', '0000-00-00', '09380263077', 'male', 'jopel@gmail.com', 'Santol Drive', '', 'Zamboanga City', 'Zamboanga Del Sur', '7000', '', '', '', '', '', '0000-00-00', '00:00:00', 'completed', '2024-11-25 16:12:35', '2024-11-25 16:12:48'),
+(110, 2, 'Jopel', '', 'Enriquez', '0000-00-00', '09380263077', 'male', 'jopel@gmail.com', 'Santol Drive', '', 'Zamboanga City', 'Zamboanga Del Sur', '7000', '', '', '', '', '', '0000-00-00', '00:00:00', 'approved', '2024-11-25 16:16:45', '2024-11-25 16:19:04'),
+(111, 2, 'Jopel', '', 'Enriquez', '0000-00-00', '09380263077', 'male', 'jopel@gmail.com', 'Santol Drive', '', 'Zamboanga City', 'Zamboanga Del Sur', '7000', '', '', '', '', '', '0000-00-00', '00:00:00', 'pending', '2024-11-25 16:18:54', '2024-11-25 16:18:54');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `appointmenttime`
 --
 
@@ -116,7 +159,7 @@ CREATE TABLE `doctor` (
 
 INSERT INTO `doctor` (`id`, `firstname`, `middlename`, `lastname`, `birthdate`, `email`, `contact_number`, `gender`, `address`, `picture`, `description`, `password`, `created_at`, `update_at`) VALUES
 (11, 'carlo', 'resaba', 'hadjirul', '0123-03-21', 'carlohadjirul@gmail.com', '21312312', 'Female', 'talon - talon', 'uploads/profile.jpg', 'nwixniniwnxiw', '111', '2024-03-03 09:17:43', '2024-03-10 04:19:45'),
-(12, 'wqewqe', 'wqeqwe', 'wqeqwe', '0013-02-12', 'wqeqweqwe@gmail.com', '1231232', 'Male', 'wqeqwewe', '', 'qweqweqwe', 'qweqee', '2024-03-03 09:18:10', '2024-03-03 09:18:10'),
+(12, 'carlo', 'wqeqwe', 'wqeqwe', '0013-02-12', 'wqeqweqwe@gmail.com', '1231232', 'Male', 'wqeqwewe', '', '', 'qweqee', '2024-03-03 09:18:10', '2024-11-25 08:48:29'),
 (13, 'carlo', 'resaba', 'wqew', '2024-03-04', 'wqeqwwq@gmail.com', '12321321', 'Female', 'wqeqwe', 'uploads/profile.jpg', 'wqeqw', 'wqwqeqwqwe', '2024-03-03 19:58:00', '2024-03-03 19:58:00');
 
 -- --------------------------------------------------------
@@ -135,6 +178,26 @@ CREATE TABLE `doctors` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `doctor_walkin`
+--
+
+CREATE TABLE `doctor_walkin` (
+  `id` int(11) NOT NULL,
+  `firstname` varchar(255) NOT NULL,
+  `middlename` varchar(255) DEFAULT NULL,
+  `lastname` varchar(255) NOT NULL,
+  `birthdate` date NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `contact_number` varchar(20) NOT NULL,
+  `gender` enum('Male','Female','Other') NOT NULL,
+  `address` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -170,6 +233,30 @@ INSERT INTO `employee` (`id`, `firstname`, `middlename`, `lastname`, `birthdate`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `findings`
+--
+
+CREATE TABLE `findings` (
+  `id` int(11) NOT NULL,
+  `appointment_id` int(11) DEFAULT NULL,
+  `history` text DEFAULT NULL,
+  `findings` text DEFAULT NULL,
+  `diagnostics` text DEFAULT NULL,
+  `prescription` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `findings`
+--
+
+INSERT INTO `findings` (`id`, `appointment_id`, `history`, `findings`, `diagnostics`, `prescription`, `created_at`) VALUES
+(23, 108, '', '', '', '', '2024-11-25 16:04:56'),
+(24, 109, '', '', '', '', '2024-11-25 16:12:48');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -197,7 +284,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `middle_name`, `last_name`, `email`, `password`, `birthdate`, `phone`, `gender`, `street_address`, `street_address_line_2`, `city`, `province`, `created_at`, `updated_at`, `zip_code`) VALUES
-(1, 'Carlo', 'Resaba', 'Hadjirul', 'carlo@gmail.com', '$2y$10$zfaUX1OMFCwqRcsCNKP5rOE6r87EhOBUSOhxQvQKOLOu46/ZcLHkS', '0000-00-00', '09977914457', 'male', 'Cristina home 1', 'Talon - Talon', 'Zamboanga City', 'Zamboaga Del Sur', '2024-10-30 05:28:34', '2024-11-21 14:52:17', '700');
+(1, 'Carlo', 'Resaba', 'Hadjirul', 'carlo@gmail.com', '$2y$10$zfaUX1OMFCwqRcsCNKP5rOE6r87EhOBUSOhxQvQKOLOu46/ZcLHkS', '2014-11-05', '09977914457', 'male', 'Cristina home 1', 'Talon - Talon', 'Zamboanga City', 'Zamboaga Del Sur', '2024-10-30 05:28:34', '2024-11-21 15:26:18', '700'),
+(2, 'Jopel', NULL, 'Enriquez', 'jopel@gmail.com', '$2y$10$IEpwKvc8Yf/ZOfSM93pMf.2WBh5elFXZt1.KGlrNQNteXZJLBGd3W', '0000-00-00', '09380263077', 'male', 'Santol Drive', '', 'Zamboanga City', 'Zamboanga Del Sur', '2024-11-24 12:33:37', '2024-11-24 12:33:37', '7000');
 
 -- --------------------------------------------------------
 
@@ -269,6 +357,13 @@ ALTER TABLE `admin`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indexes for table `appointments`
+--
+ALTER TABLE `appointments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_user_id` (`user_id`);
+
+--
 -- Indexes for table `appointmenttime`
 --
 ALTER TABLE `appointmenttime`
@@ -289,10 +384,24 @@ ALTER TABLE `doctors`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indexes for table `doctor_walkin`
+--
+ALTER TABLE `doctor_walkin`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
 -- Indexes for table `employee`
 --
 ALTER TABLE `employee`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `findings`
+--
+ALTER TABLE `findings`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `appointment_id` (`appointment_id`);
 
 --
 -- Indexes for table `users`
@@ -310,6 +419,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `appointments`
+--
+ALTER TABLE `appointments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT for table `appointmenttime`
@@ -330,16 +445,45 @@ ALTER TABLE `doctors`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `doctor_walkin`
+--
+ALTER TABLE `doctor_walkin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=338;
 
 --
+-- AUTO_INCREMENT for table `findings`
+--
+ALTER TABLE `findings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `appointments`
+--
+ALTER TABLE `appointments`
+  ADD CONSTRAINT `appointments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `findings`
+--
+ALTER TABLE `findings`
+  ADD CONSTRAINT `findings_ibfk_1` FOREIGN KEY (`appointment_id`) REFERENCES `appointments` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
