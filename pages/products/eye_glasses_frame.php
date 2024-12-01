@@ -11,7 +11,7 @@ include '../header.php';
 				<div class="bread-inner">
 					<div class="row">
 						<div class="col-12">
-							<h2> Lenses</h2>
+							<h2> Eye Glasses Frame</h2>
 						</div>
 					</div>
 				</div>
@@ -27,7 +27,7 @@ include '../header.php';
 					<div class="col-lg-12">
 						<div class="section-title">
 							<img src="../img/section-img.png" alt="#">
-							<p>Help determine the best type of lens for your vision needs, based on the results of your eye exam and your lifestyle. The lenses can then be fitted into frames according to your preference.</p>
+							<p> Essential not only for holding the lenses securely but also for ensuring a comfortable fit, proper vision, and personal style.</p>
 						</div>
 					</div>
 				</div>
@@ -36,12 +36,12 @@ include '../header.php';
 						<!-- Single Blog -->
 						<div class="single-news">
 							<div class="news-head">
-								<img src="../img/productspics/Single_Vision_Lenses.png" alt="#">
+								<img src="../img/productspics/speciality_frames.png" alt="#">
 							</div>
 							<div class="news-body">
 								<div class="news-content">
-									<h2><a href="blog-single.html">Single Vision Lenses</a></h2>
-									<p class="text">High-quality lenses correcting either nearsightedness or farsightedness with options for various materials (e.g., polycarbonate, high- index) and coatings.</p>
+									<h2><a href="blog-single.html">Speciality Frames</a></h2>
+									<p class="text">Frames tailored for specific needs such as safety glasses with impact-resistant lenses for industrial work or sports frames with durable, flexible designs for active lifestyles.</p>
                                     <p class="mt-2" style = "font-weight: bold; font-style: Arial;">P1000-P1200</p>
                                     <div class="date mt-3">Book Now!</div>
 								</div>
@@ -53,12 +53,12 @@ include '../header.php';
 						<!-- Single Blog -->
 						<div class="single-news">
 							<div class="news-head">
-								<img src="../img/productspics/Bifocal_and_Trifocal_Lenses.png" alt="#">
+								<img src="../img/productspics/Designer_Frames.jpg" alt="#">
 							</div>
 							<div class="news-body">
 								<div class="news-content">
-									<h2><a href="blog-single.html">Bifocal and Trifocal Lenses</a></h2>
-									<p class="text">Segmented lenses offering distinct focal areas for multiple prescriptions, suitable for addressing presbyopia and other vision issues.</p>
+									<h2><a href="blog-single.html">Designer Frames</a></h2>
+									<p class="text">Frames from luxury brands offering various materials (e.g., titanium, acetate), styles (e.g., rimless, semi-rimless, full-rim), and trendy designs.</p>
                                     <p class="mt-2" style = "font-weight: bold; font-style: Arial;">P1000-P1200</p>
                                     <div class="date mt-3">Book Now!</div>
 								</div>
@@ -70,12 +70,12 @@ include '../header.php';
 						<!-- Single Blog -->
 						<div class="single-news">
 							<div class="news-head">
-								<img src="../img/productspics/progressive_lenses.png" alt="#">
+								<img src="../img/productspics/Budget_Frames.jpg" alt="#">
 							</div>
 							<div class="news-body">
 								<div class="news-content">
-									<h2><a href="blog-single.html">Progressive Lenses</a></h2>
-									<p class="text">Advanced multifocal lenses providing a seamless transition between near, intermediate, and distance vision without visible lines.</p>
+									<h2><a href="blog-single.html">Budget Frames</a></h2>
+									<p class="text">Affordable yet durable frames made from materials like plastic, metal alloys, or hybrid materials, available in diverse styles and colors.</p>
                                     <p class="mt-2" style = "font-weight: bold; font-style: Arial;">P1000-P1200</p>
                                     <div class="date mt-3">Book Now!</div>
 								</div>

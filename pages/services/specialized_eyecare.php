@@ -27,7 +27,7 @@ include '../header.php';
 					<div class="col-lg-12">
 						<div class="section-title">
 							<img src="../img/section-img.png" alt="#">
-							<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
+							<p>Expert services aimed at diagnosing, treating, and managing a wide range of specific eye conditions, diseases, and complex vision problems</p>
 						</div>
 					</div>
 				</div>
@@ -36,12 +36,12 @@ include '../header.php';
 						<!-- Single Blog -->
 						<div class="single-news">
 							<div class="news-head">
-								<img src="../img/blog1.jpg" alt="#">
+								<img src="../img/servicespics/Dry_Eye_Management.jpg" alt="#">
 							</div>
 							<div class="news-body">
 								<div class="news-content">
-									<h2><a href="blog-single.html">Visual Activity Test</a></h2>
-									<p class="text">Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do eiusmod tempor incididunt sed do incididunt sed.</p>
+									<h2><a href="blog-single.html">Dry Eye Management</a></h2>
+									<p class="text">Exploring various treatment options such as artificial tears, lifestyle changes, or prescription medications.</p>
                                     <p class="mt-2" style = "font-weight: bold; font-style: Arial;">P1000-P1200</p>
                                     <div class="date mt-3">Book Now!</div>
 								</div>
@@ -53,12 +53,12 @@ include '../header.php';
 						<!-- Single Blog -->
 						<div class="single-news">
 							<div class="news-head">
-								<img src="../img/blog1.jpg" alt="#">
+								<img src="../img/servicespics/eye_examnination.jpg" alt="#">
 							</div>
 							<div class="news-body">
 								<div class="news-content">
-									<h2><a href="blog-single.html">Visual Activity Test</a></h2>
-									<p class="text">Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do eiusmod tempor incididunt sed do incididunt sed.</p>
+									<h2><a href="blog-single.html">Eye Examination</a></h2>
+									<p class="text">An eye exam checks vision and eye health to ensure clear sight and detect any potential issues.</p>
                                     <p class="mt-2" style = "font-weight: bold; font-style: Arial;">P1000-P1200</p>
                                     <div class="date mt-3">Book Now!</div>
 								</div>
@@ -70,12 +70,12 @@ include '../header.php';
 						<!-- Single Blog -->
 						<div class="single-news">
 							<div class="news-head">
-								<img src="../img/blog1.jpg" alt="#">
+								<img src="../img/servicespics/Allergy_Relief.jpg" alt="#">
 							</div>
 							<div class="news-body">
 								<div class="news-content">
-									<h2><a href="blog-single.html">Visual Activity Test</a></h2>
-									<p class="text">Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do eiusmod tempor incididunt sed do incididunt sed.</p>
+									<h2><a href="blog-single.html">Allergy Relief</a></h2>
+									<p class="text">Offering suggestions for managing and alleviating eye- related allergic reactions.</p>
                                     <p class="mt-2" style = "font-weight: bold; font-style: Arial;">P1000-P1200</p>
                                     <div class="date mt-3">Book Now!</div>
 								</div>

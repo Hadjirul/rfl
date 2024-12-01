@@ -27,7 +27,7 @@ include '../header.php';
 					<div class="col-lg-12">
 						<div class="section-title">
 							<img src="../img/section-img.png" alt="#">
-							<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
+							<p>Enhance the functionality, comfort, and durability of your eyeglasses</p>
 						</div>
 					</div>
 				</div>
@@ -36,12 +36,12 @@ include '../header.php';
 						<!-- Single Blog -->
 						<div class="single-news">
 							<div class="news-head">
-								<img src="../img/blog1.jpg" alt="#">
+								<img src="../img/servicespics/Anti-Reflective_Coating.jpg" alt="#">
 							</div>
 							<div class="news-body">
 								<div class="news-content">
-									<h2><a href="blog-single.html">Visual Activity Test</a></h2>
-									<p class="text">Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do eiusmod tempor incididunt sed do incididunt sed.</p>
+									<h2><a href="blog-single.html">Anti-Reflective Coating</a></h2>
+									<p class="text">Explaining how anti-reflective coatings reduce glare from screens and lights, enhancing vision and reducing eye strain.</p>
                                     <p class="mt-2" style = "font-weight: bold; font-style: Arial;">P1000-P1200</p>
                                     <div class="date mt-3">Book Now!</div>
 								</div>
@@ -53,12 +53,12 @@ include '../header.php';
 						<!-- Single Blog -->
 						<div class="single-news">
 							<div class="news-head">
-								<img src="../img/blog1.jpg" alt="#">
+								<img src="../img/servicespics/Scratch-Resistant_Coating.jpg" alt="#">
 							</div>
 							<div class="news-body">
 								<div class="news-content">
-									<h2><a href="blog-single.html">Visual Activity Test</a></h2>
-									<p class="text">Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do eiusmod tempor incididunt sed do incididunt sed.</p>
+									<h2><a href="blog-single.html">Scratch-Resistant Coating</a></h2>
+									<p class="text">Demonstrating the benefits of a scratch-resistant coating in preserving lens clarity and longevity.</p>
                                     <p class="mt-2" style = "font-weight: bold; font-style: Arial;">P1000-P1200</p>
                                     <div class="date mt-3">Book Now!</div>
 								</div>
@@ -70,12 +70,12 @@ include '../header.php';
 						<!-- Single Blog -->
 						<div class="single-news">
 							<div class="news-head">
-								<img src="../img/blog1.jpg" alt="#">
+								<img src="../img/servicespics/UV_Protection.jpg" alt="#">
 							</div>
 							<div class="news-body">
 								<div class="news-content">
-									<h2><a href="blog-single.html">Visual Activity Test</a></h2>
-									<p class="text">Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do eiusmod tempor incididunt sed do incididunt sed.</p>
+									<h2><a href="blog-single.html">UV Protection</a></h2>
+									<p class="text">Educating patients on the importance of UV protection in preventing long-term eye damage caused by exposure to harmful UV rays.</p>
                                     <p class="mt-2" style = "font-weight: bold; font-style: Arial;">P1000-P1200</p>
                                     <div class="date mt-3">Book Now!</div>
 								</div>

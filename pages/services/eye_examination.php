@@ -27,7 +27,7 @@ include '../header.php';
 					<div class="col-lg-12">
 						<div class="section-title">
 							<img src="../img/section-img.png" alt="#">
-							<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
+							<p>A comprehensive evaluation conducted by an eye care professional to assess the overall health and function of the eyes.</p>
 						</div>
 					</div>
 				</div>
@@ -36,12 +36,12 @@ include '../header.php';
 						<!-- Single Blog -->
 						<div class="single-news">
 							<div class="news-head">
-								<img src="../img/blog1.jpg" alt="#">
+								<img src="../img/servicespics/visual_activity_test.jpg" alt="#">
 							</div>
 							<div class="news-body">
 								<div class="news-content">
 									<h2><a href="blog-single.html">Visual Activity Test</a></h2>
-									<p class="text">Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do eiusmod tempor incididunt sed do incididunt sed.</p>
+									<p class="text">Exploring various treatment options such as artificial tears, lifestyle changes, or prescription medications.</p>
                                     <p class="mt-2" style = "font-weight: bold; font-style: Arial;">P1000-P1200</p>
                                     <div class="date mt-3">Book Now!</div>
 								</div>
@@ -53,12 +53,12 @@ include '../header.php';
 						<!-- Single Blog -->
 						<div class="single-news">
 							<div class="news-head">
-								<img src="../img/blog1.jpg" alt="#">
+								<img src="../img/servicespics/Refraction_Assessment.jpg" alt="#">
 							</div>
 							<div class="news-body">
 								<div class="news-content">
-									<h2><a href="blog-single.html">Visual Activity Test</a></h2>
-									<p class="text">Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do eiusmod tempor incididunt sed do incididunt sed.</p>
+									<h2><a href="blog-single.html">Refreaction Assessment</a></h2>
+									<p class="text">Identifying causes of redness, such as allergies or infections, and recommending appropriate treatments.</p>
                                     <p class="mt-2" style = "font-weight: bold; font-style: Arial;">P1000-P1200</p>
                                     <div class="date mt-3">Book Now!</div>
 								</div>
@@ -70,12 +70,12 @@ include '../header.php';
 						<!-- Single Blog -->
 						<div class="single-news">
 							<div class="news-head">
-								<img src="../img/blog1.jpg" alt="#">
+								<img src="../img/servicespics/Allergy_Relief.jpg" alt="#">
 							</div>
 							<div class="news-body">
 								<div class="news-content">
-									<h2><a href="blog-single.html">Visual Activity Test</a></h2>
-									<p class="text">Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do eiusmod tempor incididunt sed do incididunt sed.</p>
+									<h2><a href="blog-single.html">Eye Pressure Measurement</a></h2>
+									<p class="text">Offering suggestions for managing and alleviating eye- related allergic reactions.</p>
                                     <p class="mt-2" style = "font-weight: bold; font-style: Arial;">P1000-P1200</p>
                                     <div class="date mt-3">Book Now!</div>
 								</div>
