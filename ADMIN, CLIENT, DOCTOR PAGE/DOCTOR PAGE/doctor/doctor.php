@@ -1,8 +1,3 @@
-<?php
-session_start();
-include '../../include/header.admin.php';
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +15,9 @@ include '../../include/header.admin.php';
     require_once('../../include/head.php');
 ?>
 <body>
-
+    <?php
+           require_once('../../include/header.doctor.php')
+    ?>
     <main>
         <div class="container-fluid">
             <div class="row">
@@ -76,18 +73,18 @@ include '../../include/header.admin.php';
 
                         <div class="row">
                         <div class="col-4 mb-3">
-                            <label for="first_name" class="form-label fw-bold mb-1">First Name:</label>
-                            <input type="text" class="form-control" name="first_name" required>
+                            <label for="firstname" class="form-label fw-bold mb-1">First Name:</label>
+                            <input type="text" class="form-control" name="firstname" required>
                         </div>
 
                         <div class="col-4 mb-3">
-                            <label for="middle_name"  class="form-label  fw-bold mb-1">M.N<span class = "fst-italic text-secondary fw-lighter">(Optional)</span>:</label>
-                            <input type="text" class="form-control" name="middle_name" >
+                            <label for="middlename"  class="form-label  fw-bold mb-1">M.N<span class = "fst-italic text-secondary fw-lighter">(Optional)</span>:</label>
+                            <input type="text" class="form-control" name="middlename" >
                         </div>
 
                         <div class="col-4 mb-3">
-                            <label for="last_name" class="form-label  fw-bold mb-1">Last Name:</label>
-                            <input type="last_name" class="form-control" name="last_name" required>
+                            <label for="lastname" class="form-label  fw-bold mb-1">Last Name:</label>
+                            <input type="lastname" class="form-control" name="lastname" required>
                         </div>
                         </div>
 
@@ -172,15 +169,15 @@ include '../../include/header.admin.php';
                          <div class="row">
                          <div class="col-4 mb-3">
                             <label for="" class="form-label fw-bold mb-1">First Name:</label>
-                            <input type="text" name="first_name" id="first_name" class="form-control" required  />
+                            <input type="text" name="firstname" id="firstname" class="form-control" required  />
                         </div>
                         <div class="col-4 mb-3">
                             <label for="" class="form-label  fw-bold mb-1">M.N<span class = "fst-italic text-secondary fw-lighter">(Optional)</span>:</label>
-                            <input type="text" name="middle_name" id="middle_name" class="form-control" />
+                            <input type="text" name="middlename" id="middlename" class="form-control" />
                         </div>
                         <div class="col-4 mb-3">
                             <label for="" class="form-label fw-bold mb-1">Last Name:</label>
-                            <input type="text" name="last_name" id="last_name" class="form-control" required  />
+                            <input type="text" name="lastname" id="lastname" class="form-control" required  />
                         </div>
                          </div>
 
@@ -313,37 +310,33 @@ include '../../include/header.admin.php';
 
 
 
-              <?php
-require '../../classes/database.php';
+                <?php
+                require '../../classes/database.php';
 
-$query = 'SELECT * FROM doctor';
-$query_run = mysqli_query($con, $query);
-$modalIndex = 0; // Initialize a counter for modal IDs
-?>
+                $query = 'SELECT * FROM doctor';
+                $query_run = mysqli_query($con, $query);
+                ?>
 
-<!-- Iterate through doctor data and generate modals -->
-<?php while ($doctor = mysqli_fetch_assoc($query_run)) { ?>
-    <div class="modal fade" id="deleteSchedModal<?= $modalIndex ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel<?= $modalIndex ?>" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel<?= $modalIndex ?>">Deletion</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body fs-5">
-                    Are you sure you want to delete?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" value="<?= $doctor['id'] ?>" class="deletedoctorBtn btn btn-primary px-3">Yes</button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <?php $modalIndex++; // Increment the modal index for the next iteration ?>
-<?php } ?>
-
-
+                <!-- Iterate through doctor data and generate modals -->
+                <?php while ($doctor = mysqli_fetch_assoc($query_run)) { ?>
+                    <div class="modal fade" id="deleteSchedModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Deletion</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body fs-5">
+                                    Are you sure you want to delete?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" value="<?= $doctor['id'] ?>" class="deletedoctorBtn btn btn-primary px-3">Yes</button>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
     
                         
                 <div class="card-body">
@@ -371,14 +364,14 @@ $modalIndex = 0; // Initialize a counter for modal IDs
                     ?>
                     <tr>
                         <td><?= $counter ?></td>
-                        <td><?= $doctor['first_name'] . ' ' . $doctor['middle_name'] . ' ' . $doctor['last_name'] ?></td>
+                        <td><?= $doctor['firstname'] . ' ' . $doctor['middlename'] . ' ' . $doctor['lastname'] ?></td>
                         <td><?= $doctor['email'] ?></td>
                         <td><?= $doctor['address'] ?></td>
                         <td><?= $doctor['gender'] ?></td>
                         <td>
                             <button type="button" value="<?= $doctor['id'] ?>" class="viewdoctorBtn btn btn-info">View</button>
                             <button type="button" value="<?= $doctor['id'] ?>" class="editdoctorBtn btn btn-warning">Edit</button>
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteSchedModal<?= $counter - 1 ?>">Delete</button>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteSchedModal">Delete</button>
                         </td>
                     </tr>
                     <?php

@@ -27,7 +27,7 @@ include '../header.php';
 					<div class="col-lg-12">
 						<div class="section-title">
 							<img src="../img/section-img.png" alt="#">
-							<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
+							<p> supplementary items or products that complement the primary eyewear or eye care services provided.</p>
 						</div>
 					</div>
 				</div>
@@ -36,12 +36,12 @@ include '../header.php';
 						<!-- Single Blog -->
 						<div class="single-news">
 							<div class="news-head">
-								<img src="../img/blog1.jpg" alt="#">
+								<img src="../img/productspics/Cleaning_Solutions_and_Kits.jpg" alt="#">
 							</div>
 							<div class="news-body">
 								<div class="news-content">
-									<h2><a href="blog-single.html">Visual Activity Test</a></h2>
-									<p class="text">Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do eiusmod tempor incididunt sed do incididunt sed.</p>
+									<h2><a href="blog-single.html">Cleaning Solutions and Kits</a></h2>
+									<p class="text">Lens cleaning solutions, microfiber cloths, and cleaning kits to maintain lens clarity and hygiene.</p>
                                     <p class="mt-2" style = "font-weight: bold; font-style: Arial;">P1000-P1200</p>
                                     <div class="date mt-3">Book Now!</div>
 								</div>
@@ -53,12 +53,12 @@ include '../header.php';
 						<!-- Single Blog -->
 						<div class="single-news">
 							<div class="news-head">
-								<img src="../img/blog1.jpg" alt="#">
+								<img src="../img/productspics/Cases_and_Holders.webp" alt="#">
 							</div>
 							<div class="news-body">
 								<div class="news-content">
-									<h2><a href="blog-single.html">Visual Activity Test</a></h2>
-									<p class="text">Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do eiusmod tempor incididunt sed do incididunt sed.</p>
+									<h2><a href="blog-single.html">Cases and Holders</a></h2>
+									<p class="text">Protective cases for glasses and contact lens cases for safe storage and transport.</p>
                                     <p class="mt-2" style = "font-weight: bold; font-style: Arial;">P1000-P1200</p>
                                     <div class="date mt-3">Book Now!</div>
 								</div>
@@ -70,12 +70,12 @@ include '../header.php';
 						<!-- Single Blog -->
 						<div class="single-news">
 							<div class="news-head">
-								<img src="../img/blog1.jpg" alt="#">
+								<img src="../img/productspics/Chains_and_Straps.webp" alt="#">
 							</div>
 							<div class="news-body">
 								<div class="news-content">
-									<h2><a href="blog-single.html">Visual Activity Test</a></h2>
-									<p class="text">Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do eiusmod tempor incididunt sed do incididunt sed.</p>
+									<h2><a href="blog-single.html">Chains and Straps</a></h2>
+									<p class="text">Fashionable chains or straps to secure glasses and prevent loss.</p>
                                     <p class="mt-2" style = "font-weight: bold; font-style: Arial;">P1000-P1200</p>
                                     <div class="date mt-3">Book Now!</div>
 								</div>

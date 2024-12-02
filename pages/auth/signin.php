@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $admin = $result_admin->fetch_assoc();
             if (password_verify($password, $admin['password'])) {
                 $_SESSION['user_id'] = $admin['id'];
-                $_SESSION['name'] = $admin['name'];
+                $_SESSION['first_name'] = $admin['first_name'];
                 $_SESSION['role'] = 'admin';
 
                 header("Location: ../../ADMIN, CLIENT, DOCTOR PAGE/admin page/appointment/appointment.php");
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         } else {
             // Check in Doctor table
-            $sql_doctor = "SELECT * FROM doctors WHERE email = ?";
+            $sql_doctor = "SELECT * FROM doctor WHERE email = ?";
             $stmt_doctor = $conn->prepare($sql_doctor);
             $stmt_doctor->bind_param('s', $email);
             $stmt_doctor->execute();
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['first_name'] = $doctor['first_name'];
                     $_SESSION['role'] = 'doctor';
 
-                    header("Location: ../doctor/dashboard.php");
+                    header("Location: ../../ADMIN, CLIENT, DOCTOR PAGE/doctor page/appointment/appointment.php");
                     exit();
                 } else {
                     $error_message = "Invalid password for doctor account.";

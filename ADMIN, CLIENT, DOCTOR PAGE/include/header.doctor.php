@@ -7,11 +7,10 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../pages/css/icofont.css">
-    <title>User Dashboard</title>
+    <title>Your Page Title</title>
 </head>
 
 <style>
-
 
 .preloader {
   position: fixed;
@@ -378,7 +377,7 @@
 				<p>Are you sure you want to log out?</p>
 				<div>
 					<button onclick="closeModal()" class="btn btn-secondary mt-3">Cancel</button>
-					<a href="../    logout.php" class="btn btn-danger mt-3">Log Out</a>
+					<a href="../logout.php" class="btn btn-danger mt-3">Log Out</a>
 				</div>
 			</div>
 		</div>
@@ -388,7 +387,6 @@
 
 <script src="../../../pages/js/main.js"></script>
 <script src="../../../pages/js/jquery.magnific-popup.min.js"></script>
-
 <script>
 
                         window.onload = function () {

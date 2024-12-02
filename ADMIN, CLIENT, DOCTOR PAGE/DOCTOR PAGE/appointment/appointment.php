@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../../include/header.admin.php';
+include '../../include/header.doctor.php';
 
 
 echo '<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />';
@@ -19,7 +19,7 @@ if (isset($_SESSION['alertify'])) {
 
     // Clear session message
     unset($_SESSION['alertify']);
-    unset($_SESSION['message_t  ype']);
+    unset($_SESSION['message_type']);
 }
 
 ?>
@@ -80,33 +80,49 @@ if (isset($_SESSION['alertify'])) {
                             </div>
                         </div>
 <?php
-    // Fetch appointments with user and doctor names using a JOIN query
-    $query = "
-        SELECT 
-            a.*, 
-            CONCAT(u.first_name, ' ', u.last_name) AS user_full_name, 
-            CONCAT(d.first_name, ' ', d.last_name) AS doctor_full_name 
-        FROM 
-            appointments a 
-        JOIN 
-            users u ON a.user_id = u.id
-        JOIN 
-            doctor d ON a.doctor_id = d.id"; // Join with doctors table to get doctor's name
+// Ensure a doctor is logged in and their ID is stored in the session
+if (!isset($_SESSION['user_id'])) {
+    echo "Error: Doctor not logged in.";
+    exit;
+}
 
-    $result = $conn->query($query);
+// Retrieve the selected doctor's ID from the session
+$selected_doctor_id = $_SESSION['user_id'];
 
-    if ($result->num_rows > 0) {
-        $appointments = $result->fetch_all(MYSQLI_ASSOC);
-    } else {
-        $appointments = [];
-    }
+// Fetch appointments for the selected doctor
+$query = "
+    SELECT 
+        a.*, 
+        CONCAT(u.first_name, ' ', u.last_name) AS user_full_name
+    FROM 
+        appointments a 
+    JOIN 
+        users u ON a.user_id = u.id
+    JOIN 
+        doctor d ON a.doctor_id = d.id
+    WHERE 
+        a.doctor_id = ?"; // Filter by the selected doctor's ID
+
+// Prepare and execute the query to prevent SQL injection
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $selected_doctor_id); // Bind the doctor ID as an integer
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Fetch the results
+if ($result->num_rows > 0) {
+    $appointments = $result->fetch_all(MYSQLI_ASSOC);
+} else {
+    $appointments = [];
+}
 ?>
+
  <table id="employee" class="table table-primary table-striped">
     <thead>
         <tr class="text-center">
             <th scope="col" width="5%">#</th>
             <th scope="col">Patient's Name</th>
-            <th scope="col">Doctor's Name</th>
+            <th scope="col">Phone Number</th>
             <th scope="col">Service</th>
             <th scope="col">Date</th>
             <th scope="col">Time</th>
@@ -120,7 +136,7 @@ foreach ($appointments as $appointment) {
     echo "<tr id='appointmentRow{$appointment['id']}'>";
     echo "<td>{$counter}</td>";
     echo "<td>{$appointment['user_full_name']}</td>";
-    echo "<td>{$appointment['doctor_full_name']}</td>";
+    echo "<td>{$appointment['phone']}</td>";
     echo "<td>{$appointment['service']}</td>";
     echo "<td>{$appointment['date']}</td>";
     echo "<td>{$appointment['time']}</td>";
@@ -178,7 +194,7 @@ foreach ($appointments as $appointment) {
                     </div>
                     <div class='modal-body'>
                         <p><strong>Patient Name:</strong> {$appointment['user_full_name']}</p>
-                        <p><strong>Doctor:</strong> {$appointment['doctor_full_name']}</p>
+                        <p><strong>Doctor:</strong> {$appointment['phone']}</p>
                         <p><strong>Service:</strong> {$appointment['service']}</p>
                         <p><strong>Date:</strong> {$appointment['date']}</p>
                         <p><strong>Time:</strong> {$appointment['time']}</p>

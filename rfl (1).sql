@@ -188,9 +188,9 @@ CREATE TABLE `doctors` (
 
 CREATE TABLE `doctor_walkin` (
   `id` int(11) NOT NULL,
-  `firstname` varchar(255) NOT NULL,
-  `middlename` varchar(255) DEFAULT NULL,
-  `lastname` varchar(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `middle_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) NOT NULL,
   `birthdate` date NOT NULL,
   `email` varchar(255) NOT NULL,
   `contact_number` varchar(20) NOT NULL,

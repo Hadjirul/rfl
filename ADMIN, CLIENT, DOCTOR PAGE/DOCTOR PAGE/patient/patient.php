@@ -45,6 +45,13 @@ require_once('../../include/head.php');
 ?>
 <body>
 <main>
+    <style>
+table th, table td {
+    text-align: center !important; /* Ensures centering */
+}
+
+
+    </style>
     <div class="container-fluid">
         <div class="row">
             <?php
@@ -84,47 +91,47 @@ require_once('../../include/head.php');
 
                 <!-- Patients Table -->
                 <div class="table-responsive overflow-hidden">
-                    <table id="employee" class="table table-primary table-striped">
-                        <thead>
-                            <tr class="text-center">
-                                <th scope="col">#</th>
-                                <th scope="col">Patient's Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Birthdate</th>
-                                <th scope="col">Cellphone #</th>
-                                <th scope="col" class="text-center">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            if (!empty($Patient_array)) {
-                                $counter = 1;
-                                foreach ($Patient_array as $item) {
-                                    ?>
-                                    <tr class="text-center">
-                                        <td><?= $counter ?></td>
-                                        <td><?= htmlspecialchars($item['pname']) ?></td>
-                                        <td><?= htmlspecialchars($item['email']) ?></td>
-                                        <td><?= htmlspecialchars($item['bdate']) ?></td>
-                                        <td><?= htmlspecialchars($item['cp_num']) ?></td>
-                                        <td>
-                                            <a href="patient_history.php?user_id=<?= $item['user_id'] ?>" class="btn btn-info">View</a>
-                                        </td>
-                                    </tr>
-                                    <?php
-                                    $counter++;
-                                }
-                            } else {
-                                ?>
-                                <tr class="text-center">
-                                    <td colspan="6">No patients found with completed appointments.</td>
-                                </tr>
-                                <?php
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
+    <table id="employee" class="table table-primary table-striped text-center">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Patient's Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Birthdate</th>
+                <th scope="col">Cellphone #</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if (!empty($Patient_array)) {
+                $counter = 1;
+                foreach ($Patient_array as $item) {
+                    ?>
+                    <tr>
+                        <td><?= $counter ?></td>
+                        <td><?= htmlspecialchars($item['pname']) ?></td>
+                        <td><?= htmlspecialchars($item['email']) ?></td>
+                        <td><?= htmlspecialchars($item['bdate']) ?></td>
+                        <td><?= htmlspecialchars($item['cp_num']) ?></td>
+                        <td>
+                            <a href="patient_history.php?user_id=<?= $item['user_id'] ?>" class="btn btn-info">View Appointment History</a>
+                        </td>
+                    </tr>
+                    <?php
+                    $counter++;
+                }
+            } else {
+                ?>
+                <tr>
+                    <td colspan="6">No patients found with completed appointments.</td>
+                </tr>
+                <?php
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
             </main>
         </div>
     </div>

@@ -1,8 +1,3 @@
-<?php
-session_start();
-include '../../include/header.admin.php';
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +15,9 @@ include '../../include/header.admin.php';
     require_once('../../include/head.php');
 ?>
 <body>
-
+    <?php
+           require_once('../../include/header.doctor.php')
+    ?>
     <main>
         <div class="container-fluid">
             <div class="row">
@@ -71,7 +68,7 @@ include '../../include/header.admin.php';
                 <?php
                 function getBookingCountForPatient($patientID)
                 {
-                    require '../../../database/connection.php';
+                    require '../../classes/database.php';
                     $query = "SELECT COUNT(*) as bookingCount FROM doctor_walkin_history WHERE patient_ID = $patientID";
                     $result = mysqli_query($con, $query);
                 

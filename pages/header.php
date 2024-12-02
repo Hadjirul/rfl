@@ -10,7 +10,7 @@ if (isset($_SESSION['first_name']) && !isset($_SESSION['welcome_shown'])) {
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
-    <!-- Meta Tags -->
+ 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="keywords" content="Site keywords here">
@@ -44,20 +44,8 @@ if (isset($_SESSION['first_name']) && !isset($_SESSION['welcome_shown'])) {
 </head>
 
 <body>  
-	<!-- Preloader -->
-    <div class="preloader">
-            <div class="loader">
-                <div class="loader-outter"></div>
-                <div class="loader-inner"></div>
 
-                <div class="indicator"> 
-                    <svg width="16px" height="12px">
-                        <polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
-                        <polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
-                    </svg>
-                </div>
-            </div>
-        </div>
+	
 
 		<header class="header">
         <div class="header-inner">
@@ -152,28 +140,46 @@ if (isset($_SESSION['first_name']) && !isset($_SESSION['welcome_shown'])) {
                                         <!-- User Profile or Signin/Signup Links -->
                                         <?php if (isset($_SESSION['first_name'])): ?> 
                                             <div class="dropdown">
-                                                
-											<img 
-												src="<?= isset($_SESSION['profile_picture']) ? htmlspecialchars($_SESSION['profile_picture']) : '../img/noprofile.png'; ?>" 
-												alt="Profile Picture" 
-												class="rounded-circle ml-3" 
-												width="40" 
-												height="40"
+    <img 
+        src="<?= isset($_SESSION['profile_picture']) ? htmlspecialchars($_SESSION['profile_picture']) : '../img/noprofile.png'; ?>" 
+        alt="Profile Picture" 
+        class="rounded-circle ml-3" 
+        width="40" 
+        height="40"
+    >
+    <span class="navbar-text p- m-0"><?= htmlspecialchars($_SESSION['first_name']); ?></span> 
+    <button class="btn btn-outline dropdown-toggle my-3 py-2 px-2 pr-2" type="button" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    </button>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+        <?php
+        // Dynamic dashboard link based on role
+        if (isset($_SESSION['role'])) {
+            switch ($_SESSION['role']) {
+                case 'admin':
+                    $dashboardLink = '../../ADMIN, CLIENT, DOCTOR PAGE/admin page/dashboard/dashboard.php';
+                    break;
+                case 'doctor':
+                    $dashboardLink = '../../ADMIN, CLIENT, DOCTOR PAGE/doctor page/dashboard/dashboard.php';
+                    break;
+                case 'user':
+                    $dashboardLink = '../../ADMIN, CLIENT, DOCTOR PAGE/client page/dashboard/dashboard.php';
+                    break;
+                default:
+                    $dashboardLink = '#'; // Default case for unexpected roles
+            }
+        } else {
+            $dashboardLink = '#'; // Fallback if role is not set
+        }
+        ?>
+        <a class="dropdown-item" href="<?= htmlspecialchars($dashboardLink); ?>">
+            <i class="icofont-dashboard-web text-primary"></i> Dashboard
+        </a>
+        <a class="dropdown-item" href="javascript:void(0);" onclick="showLogoutModal()">
+            <i class="icofont-logout text-danger"></i> Logout
+        </a>
+    </div>
+</div>
 
-											>
-												<span class="navbar-text p- m-0"><?= htmlspecialchars($_SESSION['first_name']); ?></span> 
-                                                <button class="btn btn-outline dropdown-toggle my-3 py-2 px-2 pr-2" type="button" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
-                                                    <a class="dropdown-item" href="dashboard.php">
-                                                        <i class="icofont-dashboard-web text-primary"></i> Dashboard
-                                                    </a>
-													<a class="dropdown-item" href="javascript:void(0);" onclick="showLogoutModal()">
-														<i class="icofont-logout text-danger"></i> Logout
-													</a>
-
-                                                </div>
-                                            </div>
                                         <?php else: ?>
                                             <li class="<?= basename($_SERVER['PHP_SELF']) == 'signin.php' ? 'active' : ''; ?>"><a href="../auth/signin.php">Signin</a>
                                         </li>

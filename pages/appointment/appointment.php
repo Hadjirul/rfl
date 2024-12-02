@@ -42,34 +42,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ocular_history = $_POST['ocular_history'];
     $family_health_history = $_POST['family_health_history'];
     $appointment_reason = $_POST['appointment_reason'];
-    $doctor = $_POST['doctor'];
+    $doctor_id = $_POST['doctor_id'];
     $service = $_POST['service'];
     $date = $_POST['date'];
     $time = $_POST['time'];
 
     // Insert data into the database
     $query = "INSERT INTO appointments 
-              (user_id, first_name, middle_name, last_name, birthdate, phone, gender, email, 
-               street_address, street_address_line_2, city, province, zip_code, ocular_history, 
-               family_health_history, appointment_reason, doctor, service, date, time) 
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($query);
+    (user_id, first_name, middle_name, last_name, birthdate, phone, gender, email, 
+     street_address, street_address_line_2, city, province, zip_code, ocular_history, 
+     family_health_history, appointment_reason, doctor_id, service, date, time) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$stmt = $conn->prepare($query);
 
-    if ($stmt) {
-      $stmt->bind_param("isssssssssssssssssss",
-          $user_id, $first_name, $middle_name, $last_name, $birthdate, $phone, $gender, $email,
-          $street_address, $street_address_line_2, $city, $province, $zip_code, $ocular_history,
-          $family_health_history, $appointment_reason, $doctor, $service, $date, $time
-      );
-      if ($stmt->execute()) {
-          // Redirect to the index page after successful submission
-          header("Location: ../home/index.php");
-          exit(); // Stop further execution
-      } else {
-          echo "<p>Error: " . $stmt->error . "</p>";
-      }
-      $stmt->close();
-  } else {
+if ($stmt) {
+$stmt->bind_param("issssssssssssssssiss",
+  $user_id, $first_name, $middle_name, $last_name, $birthdate, $phone, $gender, $email,
+  $street_address, $street_address_line_2, $city, $province, $zip_code, $ocular_history,
+  $family_health_history, $appointment_reason, $doctor_id, $service, $date, $time
+);
+if ($stmt->execute()) {
+  header("Location: ../home/index.php");
+  exit();
+} else {
+  echo "<p>Error: " . $stmt->error . "</p>";
+}
+$stmt->close();
+}
+else {
       die("Query preparation failed: " . $conn->error);
   }
 }
@@ -182,12 +182,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <!-- Step 3: Confirmation -->
       <div class="form-step" id="form-step-3" style="display: none;">
         <div class="form-group">
-          <label for="doctor">Choose Doctor:</label>
-          <select name="doctor" class="form-control" id="doctor" >
+          <label for="doctor_id">Choose Doctor:</label>
+          <select name="doctor_id" class="form-control" id="doctor_id" >
             <option value="">Choose your Doctor</option>
-            <option value="Dr. Rosalinda Lim">Dr. Rosalinda Lim</option>
+            <?php
+    // Fetch doctors from the database
+    $doctor_query = "SELECT id, first_name, last_name FROM doctor";
+    $doctor_result = $conn->query($doctor_query);
+    while ($doctor_id = $doctor_result->fetch_assoc()) {
+        echo '<option value="' . $doctor_id['id'] . '">' . htmlspecialchars($doctor_id['first_name'] . ' ' . $doctor_id['last_name']) . '</option>';
+    }
+    ?>
           </select>
         </div>
+
+        
         <div class="form-group">
           <label for="service">Choose Service:</label>
           <select name="service" class="form-control" id="service" >
@@ -214,7 +223,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       <div class = "mb-3">
           <label for="date" >Choose Time:</label>
-          <input type="time" name="time" id="time">
+          <input type="t" name="time" id="time">
         </div>
       </div>
 

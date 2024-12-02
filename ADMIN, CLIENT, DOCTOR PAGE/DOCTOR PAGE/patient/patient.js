@@ -86,49 +86,6 @@ document.addEventListener('DOMContentLoaded', function () {
 alertify.set('notifier', 'position', 'top-center');
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    const deleteModal = document.getElementById('deleteModal');
-    let deleteAppointmentId;
-
-    // Open delete modal
-    document.querySelectorAll('.delete-modal-btn').forEach(button => {
-        button.addEventListener('click', function () {
-            deleteAppointmentId = this.getAttribute('data-id');
-            const modal = new bootstrap.Modal(deleteModal);
-            modal.show();
-        });
-    });
-
-    // Confirm delete
-    document.getElementById('confirm-delete-btn').addEventListener('click', function () {
-        if (!deleteAppointmentId) return;
-
-        fetch(`delete_patient_history.php`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ appointment_id: deleteAppointmentId }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alertify.success('Appointment deleted successfully.');
-                document.querySelector(`button[data-id="${deleteAppointmentId}"]`).closest('tr').remove();
-            } else {
-                alertify.error('Error deleting appointment: ' + data.error);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alertify.error('An unexpected error occurred.');
-        })
-        .finally(() => {
-            const modal = bootstrap.Modal.getInstance(deleteModal);
-            modal.hide();
-        });
-    });
-});
 
 
 

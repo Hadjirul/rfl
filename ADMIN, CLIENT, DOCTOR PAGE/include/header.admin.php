@@ -7,10 +7,190 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../pages/css/icofont.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs/build/css/themes/default.min.css" />
     <title>Your Page Title</title>
 </head>
 
+
+
 <style>
+
+.preloader {
+  position: fixed;
+  left: 0;
+  width: 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  z-index: 9999999;
+  -webkit-transition: .9s;
+  transition: .9s;
+}
+
+.preloader .loader {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: inline-block;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 45%;
+  -webkit-transform: translateY(-45%);
+          transform: translateY(-45%);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.preloader .loader .loader-outter {
+  position: absolute;
+  border: 4px solid #ffffff;
+  border-left-color: transparent;
+  border-bottom: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -webkit-animation: loader-outter 1s cubic-bezier(0.42, 0.61, 0.58, 0.41) infinite;
+          animation: loader-outter 1s cubic-bezier(0.42, 0.61, 0.58, 0.41) infinite;
+}
+
+.preloader .loader .loader-inner {
+  position: absolute;
+  border: 4px solid #ffffff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  left: calc(40% - 21px);
+  top: calc(40% - 21px);
+  border-right: 0;
+  border-top-color: transparent;
+  -webkit-animation: loader-inner 1s cubic-bezier(0.42, 0.61, 0.58, 0.41) infinite;
+          animation: loader-inner 1s cubic-bezier(0.42, 0.61, 0.58, 0.41) infinite;
+}
+
+.preloader .loader .indicator {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%) scale(1.5);
+          transform: translateY(-50%) scale(1.5);
+}
+
+.preloader .loader .indicator svg polyline {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.preloader .loader .indicator svg polyline#back {
+  stroke: #ffffff;
+}
+
+.preloader .loader .indicator svg polyline#front {
+  stroke: #1A76D1;
+  stroke-dasharray: 12, 36;
+  stroke-dashoffset: 48;
+  -webkit-animation: dash 1s linear infinite;
+          animation: dash 1s linear infinite;
+}
+
+.preloader::before, .preloader::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 60%;
+  z-index: -1;
+  background: #1A76D1;
+  -webkit-transition: .9s;
+  transition: .9s;
+}
+
+.preloader::after {
+  left: auto;
+  right: 0;
+}
+
+.preloader.preloader-deactivate {
+  visibility: hidden;
+}
+
+.preloader.preloader-deactivate::after, .preloader.preloader-deactivate::before {
+  width: 0;
+}
+
+.preloader.preloader-deactivate .loader {
+  opacity: 0;
+  visibility: hidden;
+}
+
+
+@-webkit-keyframes loader-outter {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes loader-outter {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes loader-inner {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(-360deg);
+            transform: rotate(-360deg);
+  }
+}
+
+@keyframes loader-inner {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(-360deg);
+            transform: rotate(-360deg);
+  }
+}
+
+@-webkit-keyframes dash {
+  62.5% {
+    opacity: 0;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dash {
+  62.5% {
+    opacity: 0;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
 /* Adjust the profile dropdown container to align items horizontally */
 .profile-dropdown {
     position: relative;
@@ -116,10 +296,32 @@
     margin-bottom: 10px;
 }
 
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white; /* Or the desired background color */
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+#preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+
 
 
 </style>
 <body>
+
+
+
 
 <header class="navbar navbar-dark sticky-top bg-white flex-md-nowrap p-0 admin shadow-sm">
     <div class="col-md-3 col-lg-2 admin-header">
@@ -135,7 +337,7 @@
         <span class="navbar-toggler-icon text-primary"></span>
     </button>
 
-    <?php if (isset($_SESSION['name'])): ?>
+    <?php if (isset($_SESSION['first_name'])): ?>
         <div class="profile-dropdown">
     <!-- Profile Picture -->
     <img 
@@ -148,13 +350,13 @@
     
     <!-- Profile Button (Dropdown trigger) -->
     <button class="btn btn-outline dropdown-toggle profile-btn p-3" type="button" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <span class="navbar-text p- m-0"><?= htmlspecialchars($_SESSION['name']); ?></span>
+        <span class="navbar-text-black p- m-0"><?= htmlspecialchars($_SESSION['first_name']); ?></span>
     </button>
 
     <!-- Dropdown Content -->
     <div class="dropdown-content" aria-labelledby="profileDropdown">
-        <a class="dropdown-item" href="dashboard.php">
-            <i class="icofont-dashboard-web text-primary"></i> Dashboard
+        <a class="dropdown-item" href="../../../pages/home/index.php">
+            <i class="icofont-dashboard-web text-primary"></i> Go to homepage
         </a>
         <a class="dropdown-item" href="javascript:void(0);" onclick="showLogoutModal()">
             <i class="icofont-logout text-danger"></i> Logout
@@ -177,7 +379,18 @@
 
 </header>
 
-<script>
+<script src="../../../pages/js/main.js"></script>
+<script src="../../../pages/js/jquery.magnific-popup.min.js"></script>
+
+<script>            
+
+                    
+                    window.onload = function () {
+                            const preloader = document.getElementById('preloader');
+                            if (preloader) {
+                                preloader.classList.add('hidden'); // Add hidden class for fade-out
+                            }
+                        };
     
 				    // Show the logout modal
 					function showLogoutModal() {
@@ -196,7 +409,9 @@
 						}
 					};
 </script>
+
 <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/alertifyjs/build/alertify.min.js"></script>
 
 </body>
 </html>

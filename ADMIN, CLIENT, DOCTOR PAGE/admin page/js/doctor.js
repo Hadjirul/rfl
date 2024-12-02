@@ -30,9 +30,9 @@ $(document).ready(function(){
 
         // Collect form data
         var formData = {
-            firstname: $("#firstname").val(),
-            middlename: $("#middlename").val(),
-            lastname: $("#lastname").val(),
+            first_name: $("#first_name").val(),
+            middle_name: $("#middle_name").val(),
+            last_name: $("#last_name").val(),
             birthdate: $("#birthdate").val(),
             email: $("#email").val(),
             contact_number: $("#contact_number").val(),
@@ -54,9 +54,9 @@ $(document).ready(function(){
                     // Perform any other actions (e.g., updating the page)
                     loademployeeData();
                     // for clearing data after save
-                    $("#firstname").val('');
-                    $("#middlename").val('');
-                    $("#lastname").val('');
+                    $("#first_name").val('');
+                    $("#middle_name").val('');
+                    $("#last_name").val('');
                     $("#birthdate").val('');
                     $("#email").val('');
                     $("#contact_number").val('');

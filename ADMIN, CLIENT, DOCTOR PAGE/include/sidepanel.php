@@ -2,25 +2,25 @@
     <div class="position-sticky pt-3 mt-3 mx-3">
         <ul class="nav flex-column pt-3 mt-2">
             <li class="nav-item">
-                <a class="nav-link <?= $dashboard_page ?>" aria-current="page" href="dashboard.php">
+                <a class="nav-link <?= $dashboard_page ?>" aria-current="page" href="../dashboard/dashboard.php">
                     <i class="fa fa-tachometer" aria-hidden="true"></i>
                     Dashboard
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= $appointment_page ?>" href="../admin/appointment.php">
+                <a class="nav-link <?= $appointment_page ?>" href="../appointment/appointment.php">
                     <i class="fa fa-file-text" aria-hidden="true"></i>
                     My Appointments
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= $doctor_page ?>" href="../admin/doctor.php">
+                <a class="nav-link <?= $doctor_page ?>" href="../doctor/doctor.php">
                     <i class="fa fa-users" aria-hidden="true"></i>
                     Doctors
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= $settings_page ?>" href="../admin/settings.php">
+                <a class="nav-link <?= $settings_page ?>" href="../settings/settings.php">
                     <i class="fa fa-gear" aria-hidden="true"></i>
                     Settings
                 </a>
