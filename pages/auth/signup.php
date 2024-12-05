@@ -1,4 +1,3 @@
-
 <?php 
 include '../../database/connection.php';
 $showModal = false; 
@@ -40,9 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email'])) {
                     VALUES ('$first_name', '$last_name', '$email', '$phone', '$street_address', '$street_address_line_2', '$city', '$province', '$zip_code', '$hashed_password', NOW())";
 
             if ($conn->query($sql) === TRUE) {
-                // Redirect after successzful registration to prevent form resubmission
-                header("Location: signin.php");
-                exit();
+                // Set showModal to true to show the modal
+                $showModal = true;
             } else {
                 $error_message = "Error: " . $sql . "<br>" . $conn->error;
             }
@@ -61,6 +59,28 @@ $conn->close();
 include "../header.php";
 
 ?>
+
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-success ml-3" id="successModalLabel">Success!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mr-3">
+                You successfully created an account.
+            </div>
+            <div class="modal-footer text-center">
+            <button type="button" class="btn btn-dark" data-dismiss="modal">OK</button>
+            <button type="button" class="btn btn-primary"><a href="signin.php">Go to Login</a></button>
+
+            </div>
+        </div>
+    </div>
+</div>
 <style>
 body {
     background-image: url(../img/backround.jpg);
@@ -125,6 +145,10 @@ body {
         .invalid {
             color: red;
         }
+    label{
+        color: black;
+   
+    }
     </style>
 </head>
 <body>
@@ -138,17 +162,17 @@ body {
         <?php endif; ?>
         <form method="POST" action="">
             <!-- First Name, Middle Name, and Last Name on the same row -->
-            <div class="form-row">
+            <div class="form-row mt-3">
                 <div class="form-group col-md-4">
-                    <label for="firstName">First Name</label>
+                    <label for="firstName">First Name:</label>
                     <input type="text" name="first_name" class="form-control" id="firstName" placeholder="First name" required>
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="middleName">Middle Name</label>
+                    <label for="middleName">Middle Name:</label>
                     <input type="text" name="middle_name" class="form-control" id="middleName" placeholder="Middle name">
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="lastName">Last Name</label>
+                    <label for="lastName">Last Name:</label>
                     <input type="text" name="last_name" class="form-control" id="lastName" placeholder="Last name" required>
                 </div>
             </div>
@@ -156,11 +180,11 @@ body {
             <!-- Birthdate and Phone Number on the same row -->
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="birthdate">Birthdate</label>
+                    <label for="birthdate">Birthdate:</label>
                     <input type="date" class="form-control" id="birthdate" name="birthdate" required>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="phone">Phone Number</label>
+                    <label for="phone">Phone Number:</label>
                     <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone number" required>
                 </div>
             </div>
@@ -168,51 +192,73 @@ body {
             <!-- Gender and Email on the same row -->
     <div class="form-row">
     <div class="form-group col-md-6">
-        <label for="gender">Gender</label>
-        <select name="gender" class="form-control" id="gender" required>
-            <option value="" disabled selected>Select your gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-        </select>
-    </div>
+    <label for="gender">Gender:</label>
+    <select name="gender" class="form-control" id="gender" required>
+        <option value="" disabled selected>Select your gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+    </select>
+</div>
     <div class="form-group col-md-6">
-        <label for="email">Email</label>
+        <label for="email">Email:</label>
         <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email" required>
     </div>
 </div>
 
 
             <!-- Address -->
+
+            
             <div class="form-row">
-                <div class="form-group col-6">
-                    <label for="streetAddress">Street Address</label>
-                    <input type="text" class="form-control" id="street_address" name="street_address" required>
-                </div>
-                <div class="form-group col-6">
-                    <label for="streetAddress2">Street Address Line 2</label>
-                    <input type="text" class="form-control" id="street_address_line_2" name="street_address_line_2" placeholder="Optional">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-4">
-                    <label for="city">City</label>
-                    <input type="text" class="form-control" id="city" name="city" required>
-                </div>
-                <div class="form-group col-4">
-                    <label for="province">Province</label>
-                    <input type="text" class="form-control" id="province" name="province" required>
-                </div>
-                <div class="form-group col-4">
-                    <label for="province">Zip Code</label>
-                    <input type="text" class="form-control" id="zip_code" name="zip_code" required>
-                </div>
-            </div>
+    <div class="form-group col-6">
+        <label for="province">Province:</label>
+        <select class="form-control" id="province" name="province" required>
+            <option value="" disabled selected>Select Province</option>
+            <option value="Zamboanga Del Sur ">Zamboanga Del Sur </option>
+            <option value="Zamboanga Del Norte">Zamboanga Del Norte</option>
+            <option value="Zamboanga Sibugay">Zamboanga Sibugay</option>
+            <!-- Add more provinces here -->
+        </select>
+    </div>
+    <div class="form-group col-6">
+        <label for="city">City:</label>
+        <select class="form-control" id="city" name="city" required>
+            <option value="" >Select City</option>
+            <option value="Zamboanga" >Zamboanga City</option>
+
+            <!-- Cities will populate based on the selected province -->
+        </select>
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="form-group col-4">
+        <label for="street_address">Barangay:</label>
+        <select class="form-control" id="street_address" name="street_address" required>
+            <option value="" disabled selected>Select </option>
+            <option value=" Arena Blanco" > Arena Blanco</option>
+            <option value="Tumaga" >Tumaga</option>
+            <option value="Talon Talon" >Talon Talon</option>
+            <option value="Zambowood" >Zambowood</option>
+
+        </select>
+    </div>
+    <div class="form-group col-4">
+        <label for="street_address_line_2">Street:</label>
+        <input type="text" class="form-control" id="street_address_line_2" name="street_address_line_2" placeholder="Optional">
+    </div>
+    <div class="form-group col-4">
+        <label for="zip_code">Zip Code:</label>
+        <input type="text" class="form-control" id="zip_code" name="zip_code" required>
+    </div>
+</div>
+
 
             <!-- Password and Confirm Password on the same row -->
             <div class="form-row">
                 <div class="form-group col-md-6 position-relative">
-                    <label for="password">Password</label>
+                    <label for="password">Password:</label>
                     <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
                     <i class="fa fa-eye toggle-password" id="togglePassword" aria-hidden="true"></i>
                     <div class="password-checklist">
@@ -223,7 +269,7 @@ body {
                     </div>
                 </div>
                 <div class="form-group col-md-6 position-relative">
-                    <label for="confirmPassword">Confirm Password</label>
+                    <label for="confirmPassword">Confirm Password:</label>
                     <input type="password" name="confirm_password" class="form-control" id="confirmPassword" placeholder="Confirm password" required>
                     <i class="fa fa-eye toggle-password" id="toggleConfirmPassword" aria-hidden="true"></i>
                     <small id="passwordMatch" class="text-danger" style="display:none;">Passwords do not match.</small>
@@ -252,28 +298,22 @@ body {
 
 <!-- Success Modal -->
 <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="successModalLabel">Success!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                You successfully created an account.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-            </div>
-        </div>
-    </div>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
+
+
+$(document).ready(function() {
+        // Show the modal if the signup was successful
+        <?php if ($showModal): ?>
+            $('#successModal').modal('show');
+        <?php endif; ?>
+    });
+
     $(document).ready(function() {
         // Show the modal if the signup was successful
         <?php if ($showModal): ?>

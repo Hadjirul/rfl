@@ -29,7 +29,7 @@ include "../header.php";
 										<h1>We Provide <span>Medical</span> Services That You Can <span>Trust!</span></h1>
 										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed nisl pellentesque, faucibus libero eu, gravida quam. </p>
 										<div class="button">
-											<a href="#" class="btn">Get Appointment</a>
+										<a href="#" class="btn <?= $current_page == '../appointment.appointment.php' ? 'active' : ''; ?>" onclick="checkLoginStatus()">Book Appointment</a>
 											<a href="#" class="btn primary">Learn More</a>
 										</div>
 									</div>
@@ -47,7 +47,7 @@ include "../header.php";
 										<h1>We Provide <span>Medical</span> Services That You Can <span>Trust!</span></h1>
 										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed nisl pellentesque, faucibus libero eu, gravida quam. </p>
 										<div class="button">
-											<a href="#" class="btn">Get Appointment</a>
+										<a href="#" class="btn <?= $current_page == '../appointment.appointment.php' ? 'active' : ''; ?>" onclick="checkLoginStatus()">Book Appointment</a>
 											<a href="#" class="btn primary">About Us</a>
 										</div>
 									</div>
@@ -65,7 +65,7 @@ include "../header.php";
 										<h1>We Provide <span>Medical</span> Services That You Can <span>Trust!</span></h1>
 										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed nisl pellentesque, faucibus libero eu, gravida quam. </p>
 										<div class="button">
-											<a href="#" class="btn">Get Appointment</a>
+										<a href="#" class="btn <?= $current_page == '../appointment.appointment.php' ? 'active' : ''; ?>" onclick="checkLoginStatus()">Book Appointment</a>
 											<a href="#" class="btn primary">Conatct Now</a>
 										</div>
 									</div>

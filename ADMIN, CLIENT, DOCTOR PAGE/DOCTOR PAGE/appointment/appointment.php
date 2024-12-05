@@ -166,7 +166,7 @@ foreach ($appointments as $appointment) {
     }
     elseif ($appointment['status'] == 'cancelled') {
         echo "
-        <span class='text-danger'>Cancelled</span>
+        <span class='text-danger mx-3 fst-italic fw-100'>Cancelled</span>
          <button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#deleteModal{$appointment['id']}'>
         Delete
     </button>
@@ -174,7 +174,7 @@ foreach ($appointments as $appointment) {
     }
     elseif ($appointment['status'] == 'completed') {
         echo "
-        <span class='text-success'>Completed</span>
+        <span class='text-success mx-3 fst-italic fw-100'>Completed</span>
          <button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#deleteModal{$appointment['id']}'>
         Delete
     </button>
@@ -194,11 +194,13 @@ foreach ($appointments as $appointment) {
                     </div>
                     <div class='modal-body'>
                         <p><strong>Patient Name:</strong> {$appointment['user_full_name']}</p>
-                        <p><strong>Doctor:</strong> {$appointment['phone']}</p>
+                        <p><strong>Phone Number:</strong> {$appointment['phone']}</p>
                         <p><strong>Service:</strong> {$appointment['service']}</p>
                         <p><strong>Date:</strong> {$appointment['date']}</p>
                         <p><strong>Time:</strong> {$appointment['time']}</p>
                         <p><strong>Status:</strong> {$appointment['status']}</p>
+                        <p><strong>Ocular History:</strong> {$appointment['ocular_history']}</p>
+                        <p><strong>Appointment Reason:</strong> {$appointment['appointment_reason']}</p>
                     </div>
                     <div class='modal-footer'>
                         <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
@@ -207,6 +209,7 @@ foreach ($appointments as $appointment) {
             </div>
         </div>
         ";
+        
 
         // Modal for Approve Appointment
         echo "
@@ -229,26 +232,33 @@ foreach ($appointments as $appointment) {
         </div>
         ";
 
-        // Modal for Cancel Appointment
         echo "
-        <div class='modal fade' id='cancelModal{$appointment['id']}' tabindex='-1' aria-labelledby='cancelModalLabel{$appointment['id']}' aria-hidden='true'>
-            <div class='modal-dialog'>
-                <div class='modal-content'>
-                    <div class='modal-header'>
-                        <h5 class='modal-title' id='cancelModalLabel{$appointment['id']}'>Confirm Cancellation</h5>
-                        <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
-                    </div>
-                    <div class='modal-body'>
-                        <p>Are you sure you want to cancel this appointment?</p>
-                    </div>
-                    <div class='modal-footer'>
-                        <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancel</button>
-<button type='button' class='btn btn-danger' onclick='cancelAppointment({$appointment['id']})' data-bs-dismiss='modal'>Delete</button>
+<div class='modal fade' id='cancelModal{$appointment['id']}' tabindex='-1' aria-labelledby='cancelModalLabel{$appointment['id']}' aria-hidden='true'>
+    <div class='modal-dialog'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title' id='cancelModalLabel{$appointment['id']}'>Confirm Cancellation</h5>
+                <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+            </div>
+            <form onsubmit='return cancelAppointment({$appointment['id']}, this);'>
+                <div class='modal-body'>
+                    <p>Are you sure you want to cancel this appointment?</p>
+                    <div class='mb-3'>
+                        <label for='cancelReason{$appointment['id']}' class='form-label'>Reason for Cancellation</label>
+                        <textarea class='form-control' id='cancelReason{$appointment['id']}' name='cancelReason' rows='3' required></textarea>
                     </div>
                 </div>
-            </div>
+                <div class='modal-footer'>
+                    <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
+                    <button type='submit' class='btn btn-danger'>Confirm Cancellation</button>
+                </div>
+            </form>
         </div>
-        ";
+    </div>
+</div>
+";
+
+
 
         // Modal for delete confirmation
         echo "
@@ -397,42 +407,57 @@ function approveAppointment(id) {
 }
 
 
-function cancelAppointment(id) {
-    if (!id) return;
+alertify.set('notifier', 'position', 'top-center');
 
-    // Send AJAX request to cancel the appointment
-    $.ajax({
-        url: 'cancel_appointment.php', // PHP script to handle cancellation
-        type: 'POST',
-        data: { appointment_id: id },
-        success: function(response) {
-            const result = JSON.parse(response);
+function cancelAppointment(appointmentId, form) {
+    const reason = form.cancelReason.value;
 
-            if (result.success) {
-                // Update the row status dynamically
-                const row = $('#appointmentRow' + id);
-                row.find('.btn').remove(); // Remove all buttons in the row
-                row.find('.text-center').html(`
-                    <span class="text-danger">Cancelled</span>
-                    <button class="btn btn-sm btn-danger ms-2" onclick="deleteAppointment(${id})">Delete</button>
-                `);
+    // Validate if reason is provided
+    if (!reason.trim()) {
+        alert("Please provide a reason for cancellation.");
+        return false;
+    }
 
-                // Display success message using AlertifyJS
-                alertify.set('notifier', 'position', 'top-center');
-                alertify.success(result.message);
-            } else {
-                // Display error message using AlertifyJS
-                alertify.set('notifier', 'position', 'top-center');
-                alertify.error(result.message);
-            }
-        },
-        error: function() {
-            // Display error message in case of a failed request
-            alertify.set('notifier', 'position', 'top-center');
-            alertify.error('An error occurred while trying to cancel the appointment.');
+    // Perform the cancellation process via AJAX request
+    console.log(`Cancelling appointment ${appointmentId} with reason: ${reason}`);
+
+    // AJAX Request to cancel the appointment
+    fetch('cancel_appointment.php', {
+        method: 'POST',
+        body: JSON.stringify({
+            appointmentId: appointmentId,
+            cancelReason: reason
+        }),
+        headers: {
+            'Content-Type': 'application/json'
         }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Show success message using Alertify.js
+            alertify.success('Appointment cancelled successfully.');
+
+            // Close the modal
+            $('#cancelModal' + appointmentId).modal('hide');
+            // Automatically reload the page to reflect the changes
+            setTimeout(function() {
+                location.reload(); // Refresh the page
+            }, 1500); // Delay the refresh to give time for the message to display
+        } else {
+            alertify.error('Failed to cancel appointment: ' + (data.message || 'Unknown error'));
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alertify.error('Error occurred while cancelling appointment. Please try again.');
     });
+
+    return false; // Prevent default form submission
 }
+
+
+
 
 
 function openAddInfoModal(appointmentId) {

@@ -43,6 +43,21 @@ if (isset($_SESSION['first_name']) && !isset($_SESSION['welcome_shown'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 
+<style>
+.btn-outline{
+    background-color:white !important;
+    color: black;
+}
+.navbar-text{
+   
+    font-size: 15px;
+    color: black;
+}
+.header, .header-inner, .container{
+    width: 100% !important;
+}
+</style>
+
 <body>  
 
 	
@@ -134,21 +149,21 @@ if (isset($_SESSION['first_name']) && !isset($_SESSION['welcome_shown'])) {
 												<span class="close" onclick="closeModal()">&times;</span>
 												<h3>Welcome, <?= isset($_SESSION['first_name']) ? htmlspecialchars($_SESSION['first_name']) : 'User'; ?>!</h3>
 												<p>We are glad to have you back. You can now book your appointment easily.</p>
-												<a href="../appointment/appointment.php" class="btn btn-primary mt-3">Go to Appointment</a>
+												<a href="../appointment/appointment.php" class="btn btn-primary mt-3 text-white">Go to Appointment</a>
 											</div>
 										</div>
-                                        <!-- User Profile or Signin/Signup Links -->
+
                                         <?php if (isset($_SESSION['first_name'])): ?> 
                                             <div class="dropdown">
-    <img 
+<img 
         src="<?= isset($_SESSION['profile_picture']) ? htmlspecialchars($_SESSION['profile_picture']) : '../img/noprofile.png'; ?>" 
         alt="Profile Picture" 
         class="rounded-circle ml-3" 
         width="40" 
         height="40"
     >
-    <span class="navbar-text p- m-0"><?= htmlspecialchars($_SESSION['first_name']); ?></span> 
-    <button class="btn btn-outline dropdown-toggle my-3 py-2 px-2 pr-2" type="button" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="navbar-text  ml-3"><?= htmlspecialchars($_SESSION['first_name']); ?></span> 
+    <button class="btn btn-outline dropdown-toggle my-3 py-2 px-2 pr-2 " type="button" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     </button>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
         <?php
@@ -266,7 +281,7 @@ if (isset($_SESSION['first_name']) && !isset($_SESSION['welcome_shown'])) {
 			<!--/ End Header Inner -->
 </header>
 
-		<script>
+     <script>
 			document.querySelector('.profile-btn').addEventListener('click', function() {
 				const dropdown = document.querySelector('.dropdown-content');
 				dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
@@ -310,5 +325,4 @@ if (isset($_SESSION['first_name']) && !isset($_SESSION['welcome_shown'])) {
 							closeModal();
 						}
 					};
-
 		</script>

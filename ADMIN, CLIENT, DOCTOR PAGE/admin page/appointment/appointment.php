@@ -150,7 +150,7 @@ foreach ($appointments as $appointment) {
     }
     elseif ($appointment['status'] == 'cancelled') {
         echo "
-        <span class='text-danger'>Cancelled</span>
+        <span class='text-danger mx-3 fst-italic fw-100'>Cancelled</span>
          <button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#deleteModal{$appointment['id']}'>
         Delete
     </button>
@@ -158,7 +158,7 @@ foreach ($appointments as $appointment) {
     }
     elseif ($appointment['status'] == 'completed') {
         echo "
-        <span class='text-success'>Completed</span>
+        <span class='text-success mx-3 fst-italic fw-100'>Completed</span>
          <button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#deleteModal{$appointment['id']}'>
         Delete
     </button>

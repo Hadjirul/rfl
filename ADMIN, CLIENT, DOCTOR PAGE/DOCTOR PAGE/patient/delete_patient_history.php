@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stmt->execute()) {
         echo json_encode(['success' => true]);
-    } else {
+    } else {    
         echo json_encode(['success' => false, 'error' => 'Failed to delete appointment.']);
     }
     $stmt->close();

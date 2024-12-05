@@ -177,13 +177,15 @@ $conn->close();
                 <i class="fa fa-eye toggle-password" id="togglePassword"></i>
             </div>
 
+
             <button type="submit" class="btn btn-primary btn-block">Login</button>
 
-            <div class="forgot-password">
+
+            <div class="forgot-password mb-1">
                 <a href="#">Forgot Password?</a>
             </div>
 
-            <div class="text-center">
+            <div class="text-center mb-3">
                 <p>Don't have an account? <a href="signup.php">Signup here</a></p>
             </div>
         </form>

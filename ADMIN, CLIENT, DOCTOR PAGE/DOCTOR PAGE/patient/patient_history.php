@@ -205,7 +205,6 @@ table th, table td {
     </div>
 </main>
 
-<!-- View Modal -->
 <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -214,19 +213,42 @@ table th, table td {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p><strong>Ocular History:</strong> <span id="ocular-history"></span></p>
-                <p><strong>Family Health History:</strong> <span id="family-history"></span></p>
-                <p><strong>Appointment Reason:</strong> <span id="appointment-reason"></span></p>
-                <p><strong>Date Held:</strong> <span id="date-held"></span></p>
-                <p><strong>Service:</strong> <span id="service"></span></p>
-                <p><strong>Doctor:</strong> <span id="doctor"></span></p>
-                <p><strong>Findings:</strong> <span id="findings"></span></p>
-                <p><strong>Diagnostics:</strong> <span id="diagnostics"></span></p>
-                <p><strong>Prescription:</strong> <span id="prescription"></span></p>
+                <div class="mb-3">
+                    <strong>Ocular History:</strong> <span id="ocular-history"></span>
+                </div>
+                <div class="mb-3">
+                    <strong>Family Health History:</strong> <span id="family-history"></span>
+                </div>
+                <div class="mb-3">
+                    <strong>Appointment Reason:</strong> <span id="appointment-reason"></span>
+                </div>
+                <div class="mb-3">
+                    <strong>Date Held:</strong> <span id="date-held"></span>
+                </div>
+                <div class="mb-3">
+                    <strong>Service:</strong> <span id="service"></span>
+                </div>
+                <div class="mb-3">
+                    <strong>Doctor:</strong> <span id="doctor"></span>
+                </div>
+                <div class="mb-3">
+                    <strong>Findings:</strong> <span id="findings"></span>
+                </div>
+                <div class="mb-3">
+                    <strong>Diagnostics:</strong> <span id="diagnostics"></span>
+                </div>
+                <div class="mb-3">
+                    <strong>Prescription:</strong> <span id="prescription"></span>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-end">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-info" id="print-modal-content">Print</button>
             </div>
         </div>
     </div>
 </div>
+          
 
 <!-- Delete Confirmation Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">

@@ -123,32 +123,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Example for adding patient history via AJAX
 
- document.getElementById('print-modal-content').addEventListener('click', function () {
-        const modalBody = document.querySelector('#viewModal .modal-body').innerHTML;
-        const printWindow = window.open('', '_blank');
-        printWindow.document.write(`
-            <html>
-            <head>
-                <title>Print Appointment Details</title>
-                <style>
-                    body {
-                        font-family: Arial, sans-serif;
-                        margin: 20px;
-                    }
-                    h1, h2, h3, h4, h5, h6 {
-                        color: #0008BD;
-                    }
-                </style>
-            </head>
-            <body>
+document.getElementById('print-modal-content').addEventListener('click', function () {
+    const modalBody = document.querySelector('#viewModal .modal-body').innerHTML;
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+        <html>
+        <head>
+          
+            <style>
+
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    height: 100vh;
+                }
+                h1, h2, h3, h4, h5, h6 {
+                    color: #0008BD;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="print-content">
                 <h2>Appointment Details</h2>
                 ${modalBody}
-            </body>
-            </html>
-        `);
-        printWindow.document.close();
-        printWindow.print();
-    });
+            </div>
+        </body>
+        </html>
+    `);
+    printWindow.document.close();
+    printWindow.print();
+});
+
 
 
 

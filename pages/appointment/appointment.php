@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $stmt = $conn->prepare($query);
 
 if ($stmt) {
-$stmt->bind_param("issssssssssssssssiss",
+$stmt->bind_param("isssssssssssssssssss",
   $user_id, $first_name, $middle_name, $last_name, $birthdate, $phone, $gender, $email,
   $street_address, $street_address_line_2, $city, $province, $zip_code, $ocular_history,
   $family_health_history, $appointment_reason, $doctor_id, $service, $date, $time
@@ -78,8 +78,8 @@ else {
 
 <!-- Form HTML -->
 <div class="form-container">
-  <div class="form-wrapper">
-    <form  method="POST" action=" ">
+  <div class="form-wrapper mb-3">
+    <form  method="POST" action="">
       <h1 class="form-title">Appointment Form</h1>
       
       <!-- Steps Indicator -->
@@ -138,30 +138,51 @@ else {
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group col-6">
-            <label for="streetAddress">Street Address:</label>
-            <input type="text" class="form-control" id="street_address" name="street_address" value="<?php echo $user['street_address']; ?>"  data-default-value="<?php echo $user['street_address']; ?>">
-          </div>
-          <div class="form-group col-6">
-            <label for="streetAddress2">Street Address Line 2:</label>
-            <input type="text" class="form-control" id="street_address_line_2" name="street_address_line_2" value="<?php echo $user['street_address_line_2']; ?>"  placeholder="Optional">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-4">
-            <label for="city">City:</label>
-            <input type="text" class="form-control" id="city" name="city" value="<?php echo $user['city']; ?>" >
-          </div>
-          <div class="form-group col-4">
-            <label for="province">Province:</label>
-            <input type="text" class="form-control" id="province" name="province" value="<?php echo $user['province']; ?>" >
-          </div>
-          <div class="form-group col-4">
-            <label for="zip_code">Zip Code:</label>
-            <input type="text" class="form-control" id="zip_code" name="zip_code" value="<?php echo $user['zip_code']; ?>" >
-          </div>
-        </div>
-      </div>
+    <div class="form-group col-6">
+        <label for="province">Province:</label>
+        <select class="form-control" id="province" name="province">
+            <option value="" disabled selected>Select a province</option>
+            <option value="Zamboanga Del Sur" <?php echo $user['province'] == 'Zamboanga Del Sur' ? 'selected' : ''; ?>>Zamboanga Del Sur</option>
+            <option value="Zamboanga Del Norte" <?php echo $user['province'] == 'Zamboanga Del Norte' ? 'selected' : ''; ?>>Zamboanga Del Norte</option>
+            <option value="Zamboanga Sibugay" <?php echo $user['province'] == 'Zamboanga Sibugay' ? 'selected' : ''; ?>>Zamboanga Sibugay</option>
+            <!-- Add more provinces as needed -->
+        </select>
+    </div>
+
+    <div class="form-group col-6">
+        <label for="city">City:</label>
+        <select class="form-control" id="city" name="city">
+            <option value="" disabled selected>Select a city</option>
+            <option value="Zamboanga City" <?php echo $user['city'] == 'Zamboanga City' ? 'selected' : ''; ?>>Zamboanga City</option>
+            <!-- Add more cities as needed -->
+        </select>
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="form-group col-4">
+        <label for="streetAddress">Barangay:</label>
+        <select class="form-control" id="street_address" name="street_address">
+            <option value="" disabled selected>Select a barangay</option>
+            <option value="Arena Blanco" <?php echo $user['street_address'] == 'Arena Blanco' ? 'selected' : ''; ?>>Arena Blanco</option>
+            <option value="Tumaga" <?php echo $user['street_address'] == 'Tumaga' ? 'selected' : ''; ?>>Tumaga</option>
+            <option value="Talon Talon" <?php echo $user['street_address'] == 'Talon Talon' ? 'selected' : ''; ?>>Talon Talon</option>
+            <option value="Zambowood" <?php echo $user['street_address'] == 'Zambowood' ? 'selected' : ''; ?>>Zambowood</option>
+        </select>
+    </div>
+
+    <div class="form-group col-4">
+        <label for="streetAddress2">Street Address</label>
+        <input type="text" class="form-control" id="street_address_line_2" name="street_address_line_2" 
+               value="<?php echo $user['street_address_line_2']; ?>" placeholder="Optional">
+    </div>
+
+    <div class="form-group col-4">
+        <label for="zip_code">Zip Code:</label>
+        <input type="text" class="form-control" id="zip_code" name="zip_code" value="<?php echo $user['zip_code']; ?>">
+    </div>
+</div>
+</div>
 
 <!-- Step 2: History -->
 <div class="form-step" id="form-step-2" style="display: none;">
@@ -223,7 +244,18 @@ else {
 
       <div class = "mb-3">
           <label for="date" >Choose Time:</label>
-          <input type="t" name="time" id="time">
+          <select name="time" id="time" class="form-control">
+          <option value="">Choose Time</option>
+          <option value="8:00am-8:30am">8:00 AM - 8:30 AM</option>
+          <option value="8:30am-9:00am">8:30 AM - 9:00 AM</option>
+          <option value="9:00am-9:30am">9:00 AM - 9:30 AM</option>
+          <option value="9:30am-10:00am">9:30 AM - 10:00 AM</option>
+          <option value="10:00am-10:30am">10:00 AM - 10:30 AM</option>
+          <option value="10:30am-11:00am">10:30 AM - 11:00 AM</option>
+          <option value="11:00am-11:30am">11:00 AM - 11:30 AM</option>
+          <option value="11:30am-12:00pm">11:30 AM - 12:00 PM</option>
+          <option value="12:00pm-12:30pm">See More..</option> 
+      </select>
         </div>
       </div>
 
@@ -231,7 +263,7 @@ else {
       <div class="form-btn-wrapper">
         <button type="button" id="prevBtn" style="display: none;" class="prev-btn">Previous</button>
         <button type="button" id="nextBtn" class="next-btn">Next</button>
-        <button type="button" class="btn btn-primary" id="submitBtn">Submit</button>
+        <button type="button" class="btn btn-primary mt-3" id="submitBtn">Submit</button>
       </div>
 
 <div class="modal text-align-center" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">

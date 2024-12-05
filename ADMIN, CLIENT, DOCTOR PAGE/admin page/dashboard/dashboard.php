@@ -17,19 +17,33 @@ include '../../include/header.admin.php';
         <div class="container-fluid">
             <div class="row">
                 <?php
-                    require_once('../include/sidepanel.php')
+                    require_once('sidepanel.php')
                 ?>
    
-
+<style>
+     .box-hover{
+      background-color: #026efe;
+    }
+    .box, .box-hover{
+        border-color: #026efe;
+    }
+    .counter-title{
+        font-size: 1.5em;
+    }
+    .main-header{
+        margin-left:20px;
+    }
+</style>
 
 <body>
+
 
     <div class="main">
         <div class="main-header">
             <div class="mobile-toggle" id="mobile-toggle">
                 <i class='bx bx-menu-alt-right'></i>
             </div>
-            <div class="main-title">
+            <div class="main-title fw-bold brand-color">
                 dashboard
             </div>
         </div>
@@ -38,15 +52,15 @@ include '../../include/header.admin.php';
                 <div class="col-3 col-md-6 col-sm-12">
                     <div class="box box-hover">
                         <!-- COUNTER -->
-                        <div class="counter">
-                            <div class="counter-title">
+                        <div class="counter ">
+                            <div class="counter-title text-white  fw-bolder">
                                 All Doctors
                             </div>
                             <div class="counter-info">
-                                <div class="counter-count">
+                                <div class="counter-count text-white">
                                     3
                                 </div>
-                                <i class='bx bx-group'></i>
+                                <i class='bx bx-group text-white'></i>
                             </div>
                         </div>
                         <!-- END COUNTER -->
@@ -56,14 +70,14 @@ include '../../include/header.admin.php';
                     <div class="box box-hover">
                         <!-- COUNTER -->
                         <div class="counter">
-                            <div class="counter-title">
+                            <div class="counter-title text-white  fw-bolder">
                                Total Booking
                             </div>
                             <div class="counter-info">
-                                <div class="counter-count">
+                                <div class="counter-count text-white">
                                     43
                                 </div>
-                                <i class='bx bx-book'></i>
+                                <i class='bx bx-book text-white'></i>
                             </div>
                         </div>
                         <!-- END COUNTER -->
@@ -73,14 +87,14 @@ include '../../include/header.admin.php';
                     <div class="box box-hover">
                         <!-- COUNTER -->
                         <div class="counter">
-                            <div class="counter-title">
+                            <div class="counter-title text-white  fw-bolder">
                                  Total Profit
                             </div>
                             <div class="counter-info">
-                                <div class="counter-count">
+                                <div class="counter-count text-white">
                                     P20,780
                                 </div>
-                                <i class='bx bx-line-chart'></i>
+                                <i class='bx bx-line-chart text-white'></i>
                             </div>
                         </div>
                         <!-- END COUNTER -->
@@ -90,14 +104,14 @@ include '../../include/header.admin.php';
                     <div class="box box-hover">
                         <!-- COUNTER -->
                         <div class="counter">
-                            <div class="counter-title">
+                            <div class="counter-title text-white fw-bolder">
                                 daily visitors
                             </div>
                             <div class="counter-info">
-                                <div class="counter-count">
+                                <div class="counter-count text-white">
                                     690
                                 </div>
-                                <i class='bx bx-user'></i>
+                                <i class='bx bx-user text-white'></i>
                             </div>
                         </div>
                         <!-- END COUNTER -->

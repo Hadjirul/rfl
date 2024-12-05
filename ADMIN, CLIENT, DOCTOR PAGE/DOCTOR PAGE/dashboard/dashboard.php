@@ -1,7 +1,38 @@
 <?php
 session_start();
-?>
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../login.php"); // Redirect to login if not logged in
+    exit;
+}
 
+require_once('../../../database/connection.php'); // Include your database connection script
+
+$doctor_id = $_SESSION['user_id']; // Ensure doctor_id is retrieved from session
+
+// Fetch doctor details
+$queryDoctor = "SELECT first_name, last_name FROM doctor WHERE id = ?";
+$stmtDoctor = $conn->prepare($queryDoctor);
+if ($stmtDoctor) {
+    $stmtDoctor->bind_param("i", $doctor_id);
+    $stmtDoctor->execute();
+    $resultDoctor = $stmtDoctor->get_result();
+    $doctor = $resultDoctor->fetch_assoc();
+    $stmtDoctor->close();
+} else {
+    die("Error preparing doctor query: " . $conn->error);
+}
+
+// Fetch appointments for the logged-in doctor
+$queryAppointments = "SELECT service, date, time, status FROM appointments WHERE doctor_id = ? AND date >= CURDATE() ORDER BY date ASC, time ASC LIMIT 5";
+$stmtAppointments = $conn->prepare($queryAppointments);
+if ($stmtAppointments) {
+    $stmtAppointments->bind_param("i", $doctor_id);
+    $stmtAppointments->execute();
+    $resultAppointments = $stmtAppointments->get_result();
+} else {
+    die("Error preparing appointments query: " . $conn->error);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
@@ -11,28 +42,24 @@ session_start();
 ?>
 <body>
     <?php
-        require_once('../../include/header.doctor.php')
+        require_once('../../include/header.doctor.php');
     ?>
     <main>
         <div class="container-fluid">
             <div class="row">
                 <?php
-                    require_once('../include/sidepanel.php')
+                    require_once('../include/sidepanel.php');
                 ?>
-               
-                 
                 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class = "container mt-3">
-                
-                 <h4 class = "pt-3">Welcome!</h3>
-                 <h4 class = "font-weight-bolder">Mr. Carlo</h3>
-                 <h5 class = "pt-3">Track your past and future appointments history.Also find out the expected arrival</h5>
-                  <h5>time of your doctor or medical consultant. </h5>
-                 <a href="../appointment/appointment.php" class="btn btn-primary mt-3 px-4">
-    <h6 class="fs-5">View My Bookings</h6>
-</a>
-
-</div>
+                    <div class="container mt-3">
+                        <h4 class="pt-3">
+                            Welcome, Dr. <?php echo htmlspecialchars($doctor['first_name'] . ' ' . $doctor['last_name'] ?? 'Doctor'); ?>!
+                        </h4>
+                        <h5 class="pt-3">Track your past and future appointments. Also, find out the expected arrival time of your patients.</h5>
+                        <a href="../appointment/appointment.php" class="btn btn-primary mt-3 px-4">
+                            <h6 class="fs-5">View My Bookings</h6>
+                        </a>
+                        </div>
                 <div class="row py-2 py-lg-3">
                     
                     <div class="row py-2 py-lg-3 col-lg-7">
@@ -130,16 +157,15 @@ session_start();
                             
                                 <!-- You now have a total of 10 rows with spicy pizza orders -->
                             </tbody>
-                        </table>                                             
-                    </div>    
+                        </table> 
+                        </div>    
                     </div>
-                        
                 </main>
             </div>
         </div>
     </main>
     <?php
-        require_once('../../include/js.php')
+        require_once('../../include/js.php');
     ?>
     <script src="../js/dashboard.js"></script>
 </body>

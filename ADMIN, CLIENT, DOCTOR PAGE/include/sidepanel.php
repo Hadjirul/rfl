@@ -19,13 +19,20 @@
                     Doctors
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link <?= $settings_page ?>" href="../../../pages/appointment/appointment.php">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    Book Apointment
+                </a>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link <?= $settings_page ?>" href="../settings/settings.php">
                     <i class="fa fa-gear" aria-hidden="true"></i>
                     Settings
                 </a>
             </li>
-          
             <hr class="d-lg-none">
             <li class="nav-item d-lg-none">
                 <a class="nav-link" href="#">

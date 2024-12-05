@@ -70,6 +70,81 @@ try {
         require_once('../../include/header.user.php');
     ?>
     <main>
+
+<!-- View Appointment Modal -->
+<div class="modal fade" id="viewAppointmentModal" tabindex="-1" aria-labelledby="viewAppointmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewAppointmentModalLabel">Appointment Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Patient Name:</strong> <span id="patientName"></span></p>
+                <p><strong>Doctor Name:</strong> <span id="doctorName"></span></p>
+                <p><strong>Service:</strong> <span id="service"></span></p>
+                <p><strong>Date:</strong> <span id="date"></span></p>
+                <p><strong>Time:</strong> <span id="time"></span></p>
+                <p><strong>Appointment Reason:</strong> <span id="appointmentReason"></span></p>
+                <p><strong>Ocular History:</strong> <span id="ocularHistory"></span></p>
+                <p><strong>Family Health History:</strong> <span id="familyHealthHistory"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <!-- Cancel Modal -->
+<div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cancelModalLabel">Cancel Appointment</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="cancelForm">
+          <div class="mb-3">
+            <label for="cancelReason" class="form-label">Reason for Cancellation</label>
+            <textarea class="form-control" id="cancelReason" name="cancelReason" rows="3" required></textarea>
+          </div>
+          <input type="hidden" id="appointmentId" name="appointmentId">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" id="submitCancel">Confirm Cancellation</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- View Cancellation Modal -->
+<div class="modal fade" id="viewCancellationModal" tabindex="-1" aria-labelledby="viewCancellationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewCancellationModalLabel">Cancellation Reason</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="cancelReasonText">Loading...</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    
         <div class="container-fluid">
             <div class="row">
             <?php
@@ -138,24 +213,55 @@ try {
             $doctor_name = $row['doctor_first_name'] . " " . $row['doctor_last_name'];
             $status = htmlspecialchars($row['status'], ENT_QUOTES, 'UTF-8');
     ?>
-            <tr>
-                <td><?= $counter ?></td>
-                <td><?= htmlspecialchars($row['pname'], ENT_QUOTES, 'UTF-8') ?></td>
-                <td><?= htmlspecialchars($doctor_name, ENT_QUOTES, 'UTF-8') ?></td>
-                <td><?= htmlspecialchars($row['service'], ENT_QUOTES, 'UTF-8') ?></td>
-                <td><?= htmlspecialchars($row['date'], ENT_QUOTES, 'UTF-8') ?></td>
-                <td><?= htmlspecialchars($row['time'], ENT_QUOTES, 'UTF-8') ?></td>
-                <td>
-                    <?php if ($status === 'Pending'): ?>
-                        <div class="d-flex align-items-center">
-                            <h6 class="text-muted mx-3 fst-italic fw-100"><?= $status ?></h6>
-                            <button type="button" class="btn btn-danger mr-2"><i class="fa fa-trash"></i> Cancel</button>
-                        </div>
-                    <?php else: ?>
-                        <?= $status ?>
-                    <?php endif; ?>
-                </td>
-            </tr>
+  <tr>
+    <td><?= $counter ?></td>
+    <td><?= htmlspecialchars($row['pname'], ENT_QUOTES, 'UTF-8') ?></td>
+    <td><?= htmlspecialchars($doctor_name, ENT_QUOTES, 'UTF-8') ?></td>
+    <td><?= htmlspecialchars($row['service'], ENT_QUOTES, 'UTF-8') ?></td>
+    <td><?= htmlspecialchars($row['date'], ENT_QUOTES, 'UTF-8') ?></td>
+    <td><?= htmlspecialchars($row['time'], ENT_QUOTES, 'UTF-8') ?></td>
+    <td>
+        <?php if ($status === 'pending'): ?>
+            <div class="d-flex align-items-center">
+                <h6 class="text-muted mx-3 fst-italic fw-100"><?= $status ?></h6>
+                <button 
+                    type="button" 
+                    class="btn btn-danger cancel-btn" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#cancelModal" 
+                    data-id="<?= $row['id'] ?>">
+                    <i class="fa fa-trash"></i> Cancel
+                </button>
+            </div>
+        <?php elseif ($status === 'cancelled'): ?>
+            <div class="d-flex align-items-center">
+            <h6 class="text-danger mx-3 fst-italic fw-100"><?= $status ?></h6>
+            <button 
+                type="button" 
+                class="btn btn-info view-cancellation-btn" 
+                data-bs-toggle="modal" 
+                data-bs-target="#viewCancellationModal" 
+                data-id="<?= $row['id'] ?>">
+                <i class="fa fa-eye"></i>Reason
+            </button>
+            </div>
+  
+            <?php elseif ($status === 'completed'): ?>
+                <div class="d-flex align-items-center">
+                <h6 class="text-success mx-3 fst-italic fw-100"><?= $status ?></h6>
+            <button 
+                type="button" 
+                class="btn btn-info view-appointment-btn" 
+                data-bs-toggle="modal" 
+                data-bs-target="#viewAppointmentModal" 
+                data-id="<?= $row['id'] ?>">
+                <i class="fa fa-eye"></i> View
+            </button>
+        <?php else: ?>
+            <?= $status ?>
+        <?php endif; ?>
+    </td>
+</tr>
     <?php
             $counter++;
         }
@@ -171,6 +277,156 @@ try {
     <?php
         require_once('../../include/js.php');
     ?>
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    const viewButtons = document.querySelectorAll(".view-appointment-btn");
+    const viewAppointmentModal = new bootstrap.Modal(document.getElementById("viewAppointmentModal"));
+    
+    // Select modal elements
+    const patientName = document.getElementById("patientName");
+    const doctorName = document.getElementById("doctorName");
+    const service = document.getElementById("service");
+    const date = document.getElementById("date");
+    const time = document.getElementById("time");
+    const appointmentReason = document.getElementById("appointmentReason");
+    const ocularHistory = document.getElementById("ocularHistory");
+    const familyHealthHistory = document.getElementById("familyHealthHistory");
+
+    // Fetch appointment details when the modal is shown
+    viewButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const appointmentId = button.getAttribute("data-id");
+
+            // Send AJAX request to fetch appointment details
+            fetch("get_appointment_details.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ appointmentId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Populate the modal with the fetched data
+                    patientName.textContent = data.appointment.first_name + " " + data.appointment.last_name;
+                    doctorName.textContent = data.appointment.doctor_first_name + " " + data.appointment.doctor_last_name;
+                    service.textContent = data.appointment.service;
+                    date.textContent = data.appointment.date;
+                    time.textContent = data.appointment.time;
+                    appointmentReason.textContent = data.appointment.appointment_reason || "Not provided.";
+                    ocularHistory.textContent = data.appointment.ocular_history || "Not provided.";
+                    familyHealthHistory.textContent = data.appointment.family_health_history || "Not provided.";
+                } else {
+                    alert("Failed to retrieve appointment details.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("An error occurred while fetching appointment details.");
+            });
+
+            // Show the modal
+            viewAppointmentModal.show();
+        });
+    });
+});
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const viewButtons = document.querySelectorAll(".view-cancellation-btn");
+    const viewCancellationModal = new bootstrap.Modal(document.getElementById("viewCancellationModal"));
+    const cancelReasonText = document.getElementById("cancelReasonText");
+
+    // Fetch cancellation reason when the modal is shown
+    viewButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const appointmentId = button.getAttribute("data-id");
+
+            // Send AJAX request to fetch cancellation reason
+            fetch("get_cancellation_reason.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ appointmentId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    cancelReasonText.textContent = data.cancelReason || "No reason provided.";
+                } else {
+                    cancelReasonText.textContent = "Failed to retrieve the reason.";
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                cancelReasonText.textContent = "An error occurred.";
+            });
+        });
+    });
+});
+
+
+
+alertify.set('notifier', 'position', 'top-right'); // Set the notification position
+alertify.set('notifier', 'delay', 5); // Set the display duration in seconds
+
+        document.addEventListener("DOMContentLoaded", () => {
+  const cancelButtons = document.querySelectorAll(".cancel-btn");
+  const cancelModal = new bootstrap.Modal(document.getElementById("cancelModal"));
+  const appointmentIdInput = document.getElementById("appointmentId");
+  const cancelReasonInput = document.getElementById("cancelReason");
+  const submitCancelButton = document.getElementById("submitCancel");
+
+  // Set appointment ID when the modal is shown
+  cancelButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const appointmentId = button.getAttribute("data-id");
+      appointmentIdInput.value = appointmentId;
+    });
+  });
+  submitCancelButton.addEventListener("click", () => {
+    const appointmentId = appointmentIdInput.value;
+    const cancelReason = cancelReasonInput.value;
+
+    if (!cancelReason) {
+        alertify.error("Please provide a reason for cancellation.");
+        return;
+    }
+
+    // Send AJAX request
+    fetch("cancel_appointment.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ appointmentId, cancelReason }),
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alertify.success("Appointment canceled successfully.");
+                setTimeout(() => {
+                    location.reload(); // Refresh the page after success message
+                }, 2000); // Wait 2 seconds before reloading
+            } else {
+                alertify.error(data.message || "Failed to cancel the appointment. Please try again.");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alertify.error("An error occurred. Please try again.");
+        });
+
+    // Close the modal
+    cancelModal.hide();
+});
+
+});
+
+    </script>
     <script src="appointment.js"></script>
 </body>
 </html>

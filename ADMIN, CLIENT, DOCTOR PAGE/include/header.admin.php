@@ -16,6 +16,10 @@
 
 <style>
 
+.btn, .btn-outline{
+    background-color: blue;
+}
+
 .preloader {
   position: fixed;
   left: 0;
@@ -317,10 +321,22 @@
 
 
 
+
 </style>
 <body>
 
-
+<div id="preloader" class="preloader">
+    <div class="loader">
+        <div class="loader-outter"></div>
+        <div class="loader-inner"></div>
+        <div class="indicator"> 
+            <svg width="16px" height="12px">
+                <polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                <polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+            </svg>
+        </div>
+    </div>
+</div>
 
 
 <header class="navbar navbar-dark sticky-top bg-white flex-md-nowrap p-0 admin shadow-sm">
@@ -349,7 +365,7 @@
     >
     
     <!-- Profile Button (Dropdown trigger) -->
-    <button class="btn btn-outline dropdown-toggle profile-btn p-3" type="button" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button class="btn btn-outline dropdown-toggle profile-btn p-3 bg-p" type="button" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="navbar-text-black p- m-0"><?= htmlspecialchars($_SESSION['first_name']); ?></span>
     </button>
 

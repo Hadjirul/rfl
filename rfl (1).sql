@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2024 at 05:46 PM
+-- Generation Time: Dec 05, 2024 at 06:52 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -32,7 +32,7 @@ CREATE TABLE `admin` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `name` varchar(255) NOT NULL,
+  `first_name` varchar(50) DEFAULT NULL,
   `picture` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -40,9 +40,8 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `email`, `password`, `created_at`, `name`, `picture`) VALUES
-(1, 'admin@example.com', '$2y$10$rJH0Px7eU1oFIGDUvPmDtuROQt2b03/Tn3IxXGbKrTbP.1Ox5cWZK', '2024-10-30 05:46:10', '', NULL),
-(2, 'admin2@example.com', '$2y$10$Jezqy3z3/Ps1EQILdAaaA.PGWQrTKBD2Gn3tVwqbJiGJbocMB0tw2', '2024-10-30 13:51:56', 'Maria', 'uploads/module_table_bottom.png');
+INSERT INTO `admin` (`id`, `email`, `password`, `created_at`, `first_name`, `picture`) VALUES
+(2, 'admin2@example.com', '$2y$10$Jezqy3z3/Ps1EQILdAaaA.PGWQrTKBD2Gn3tVwqbJiGJbocMB0tw2', '2024-10-30 13:51:56', 'Admin', 'uploads/module_table_bottom.png');
 
 -- --------------------------------------------------------
 
@@ -89,24 +88,24 @@ CREATE TABLE `appointments` (
   `ocular_history` text DEFAULT NULL,
   `family_health_history` text DEFAULT NULL,
   `appointment_reason` text DEFAULT NULL,
-  `doctor` varchar(255) DEFAULT NULL,
   `service` varchar(255) NOT NULL,
   `date` date DEFAULT NULL,
   `time` time DEFAULT NULL,
   `status` enum('pending','approved','completed','cancelled') DEFAULT 'pending',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `doctor_id` int(11) DEFAULT NULL,
+  `cancel_reason` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `appointments`
 --
 
-INSERT INTO `appointments` (`id`, `user_id`, `first_name`, `middle_name`, `last_name`, `birthdate`, `phone`, `gender`, `email`, `street_address`, `street_address_line_2`, `city`, `province`, `zip_code`, `ocular_history`, `family_health_history`, `appointment_reason`, `doctor`, `service`, `date`, `time`, `status`, `created_at`, `updated_at`) VALUES
-(108, 2, 'Jopel', '', 'Enriquez', '0000-00-00', '09380263077', 'male', 'jopel@gmail.com', 'Santol Drive', '', 'Zamboanga City', 'Zamboanga Del Sur', '7000', '', '', '', '', '', '0000-00-00', '00:00:00', 'completed', '2024-11-25 16:04:42', '2024-11-25 16:04:56'),
-(109, 2, 'Jopel', '', 'Enriquez', '0000-00-00', '09380263077', 'male', 'jopel@gmail.com', 'Santol Drive', '', 'Zamboanga City', 'Zamboanga Del Sur', '7000', '', '', '', '', '', '0000-00-00', '00:00:00', 'completed', '2024-11-25 16:12:35', '2024-11-25 16:12:48'),
-(110, 2, 'Jopel', '', 'Enriquez', '0000-00-00', '09380263077', 'male', 'jopel@gmail.com', 'Santol Drive', '', 'Zamboanga City', 'Zamboanga Del Sur', '7000', '', '', '', '', '', '0000-00-00', '00:00:00', 'approved', '2024-11-25 16:16:45', '2024-11-25 16:19:04'),
-(111, 2, 'Jopel', '', 'Enriquez', '0000-00-00', '09380263077', 'male', 'jopel@gmail.com', 'Santol Drive', '', 'Zamboanga City', 'Zamboanga Del Sur', '7000', '', '', '', '', '', '0000-00-00', '00:00:00', 'pending', '2024-11-25 16:18:54', '2024-11-25 16:18:54');
+INSERT INTO `appointments` (`id`, `user_id`, `first_name`, `middle_name`, `last_name`, `birthdate`, `phone`, `gender`, `email`, `street_address`, `street_address_line_2`, `city`, `province`, `zip_code`, `ocular_history`, `family_health_history`, `appointment_reason`, `service`, `date`, `time`, `status`, `created_at`, `updated_at`, `doctor_id`, `cancel_reason`) VALUES
+(211, 7, 'Jopel', '', 'Enriquez', '2000-12-16', '09977914457', 'male', 'jopel@gmail.com', 'Tumaga', 'Del Monte Street', 'Zamboanga City', 'Zamboanga Del Sur', '7000', '', '', '', 'Frame Selection', '0000-00-00', '08:30:00', 'cancelled', '2024-12-05 15:59:04', '2024-12-05 16:36:39', 11, 'wqewqewq'),
+(212, 7, 'Jopel', '', 'Enriquez', '2000-12-16', '09977914457', 'male', 'jopel@gmail.com', 'Tumaga', 'Del Monte Street', 'Zamboanga City', 'Zamboanga Del Sur', '7000', '', '', '', '', '0000-00-00', '00:00:00', 'cancelled', '2024-12-05 16:39:38', '2024-12-05 16:39:50', 11, 'qwewqe'),
+(213, 7, 'Jopel', '', 'Enriquez', '2000-12-16', '09977914457', 'male', 'jopel@gmail.com', 'Tumaga', 'Del Monte Street', 'Zamboanga City', 'Zamboanga Del Sur', '7000', 'Eye Redness', 'Highblood', 'Magpapagamot malamang', 'ense Type', '2024-12-18', '08:30:00', 'completed', '2024-12-05 16:59:12', '2024-12-05 17:13:20', 11, NULL);
 
 -- --------------------------------------------------------
 
@@ -138,9 +137,9 @@ INSERT INTO `appointmenttime` (`time_id`, `time_from`, `time_to`, `available_dat
 
 CREATE TABLE `doctor` (
   `id` int(11) NOT NULL,
-  `firstname` varchar(100) NOT NULL,
-  `middlename` varchar(100) NOT NULL,
-  `lastname` varchar(100) NOT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `middle_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
   `birthdate` date NOT NULL,
   `email` varchar(299) NOT NULL,
   `contact_number` varchar(50) NOT NULL,
@@ -157,28 +156,30 @@ CREATE TABLE `doctor` (
 -- Dumping data for table `doctor`
 --
 
-INSERT INTO `doctor` (`id`, `firstname`, `middlename`, `lastname`, `birthdate`, `email`, `contact_number`, `gender`, `address`, `picture`, `description`, `password`, `created_at`, `update_at`) VALUES
-(11, 'carlo', 'resaba', 'hadjirul', '0123-03-21', 'carlohadjirul@gmail.com', '21312312', 'Female', 'talon - talon', 'uploads/profile.jpg', 'nwixniniwnxiw', '111', '2024-03-03 09:17:43', '2024-03-10 04:19:45'),
-(12, 'carlo', 'wqeqwe', 'wqeqwe', '0013-02-12', 'wqeqweqwe@gmail.com', '1231232', 'Male', 'wqeqwewe', '', '', 'qweqee', '2024-03-03 09:18:10', '2024-11-25 08:48:29'),
-(13, 'carlo', 'resaba', 'wqew', '2024-03-04', 'wqeqwwq@gmail.com', '12321321', 'Female', 'wqeqwe', 'uploads/profile.jpg', 'wqeqw', 'wqwqeqwqwe', '2024-03-03 19:58:00', '2024-03-03 19:58:00');
+INSERT INTO `doctor` (`id`, `first_name`, `middle_name`, `last_name`, `birthdate`, `email`, `contact_number`, `gender`, `address`, `picture`, `description`, `password`, `created_at`, `update_at`) VALUES
+(11, 'Rosalinda', '', 'Lim', '1986-11-10', 'Rosalindalim@gmail.com', '09266215032', 'Female', 'Tumaga, Zamboanga City', 'uploads/profile.jpg', '', '$2y$10$k.TD4MfFo3yq8JhAZE.kwePQ.9m.e7XfExmK8KrFuMt.Z4FFJ.k5u', '2024-03-03 01:17:43', '2024-11-26 15:03:28'),
+(14, 'Dr. Ong', '', 'Lim', '1990-02-11', 'LimOng@gmail.com', '09977914457', 'Male', 'Tumaga, Zamboanga Citty', '', 'Optomologist', '$2y$10$uY51uc0NgJ8XpcBHdbHajO.uQMA3MXaM121dvNEHivz4NJgC8fluK', '2024-11-26 16:34:40', '2024-11-26 16:34:40');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `doctors`
+-- Table structure for table `doctor_schedule`
 --
 
-CREATE TABLE `doctors` (
+CREATE TABLE `doctor_schedule` (
   `id` int(11) NOT NULL,
-  `first_name` varchar(255) NOT NULL,
-  `last_name` varchar(255) NOT NULL,
-  `specialization` varchar(255) NOT NULL,
-  `phone` varchar(50) NOT NULL,
-  `license_number` varchar(100) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `start_time` varchar(50) NOT NULL,
+  `end_time` varchar(50) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `doctor_schedule`
+--
+
+INSERT INTO `doctor_schedule` (`id`, `start_time`, `end_time`, `created_at`, `updated_at`) VALUES
+(1, '2024-12-12T00:24', '2024-12-17T00:24', '2024-12-02 16:22:12', '2024-12-02 16:22:12');
 
 -- --------------------------------------------------------
 
@@ -188,9 +189,9 @@ CREATE TABLE `doctors` (
 
 CREATE TABLE `doctor_walkin` (
   `id` int(11) NOT NULL,
-  `first_name` varchar(255) NOT NULL,
-  `middle_name` varchar(255) DEFAULT NULL,
-  `last_name` varchar(255) NOT NULL,
+  `firstname` varchar(255) NOT NULL,
+  `middlename` varchar(255) DEFAULT NULL,
+  `lastname` varchar(255) NOT NULL,
   `birthdate` date NOT NULL,
   `email` varchar(255) NOT NULL,
   `contact_number` varchar(20) NOT NULL,
@@ -199,6 +200,13 @@ CREATE TABLE `doctor_walkin` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `doctor_walkin`
+--
+
+INSERT INTO `doctor_walkin` (`id`, `firstname`, `middlename`, `lastname`, `birthdate`, `email`, `contact_number`, `gender`, `address`, `created_at`, `updated_at`) VALUES
+(1, 'Amir', '', 'Hadjirul', '2009-02-12', 'hadjirulamir@gmail.com', '0997791447', 'Male', 'Talon-Talon, Zamboanga City', '2024-11-30 06:09:20', '2024-11-30 06:09:20');
 
 -- --------------------------------------------------------
 
@@ -227,8 +235,8 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`id`, `firstname`, `middlename`, `lastname`, `birthdate`, `email`, `contact_number`, `gender`, `address`, `role`, `picture`, `created_at`, `updated_at`) VALUES
-(336, 'wqeqw', 'wqeqw', 'wqeqwe', '0213-03-12', 'qweqweqww@gmail.com', 123213, 'Male', 'wqeqwe', 'wqeqwwe', NULL, '2024-03-03 09:19:01', '2024-03-03 09:19:01'),
-(337, 'carlo', 'qweqwe', 'wqeqwe', '0202-03-12', '213211212@gmail.com', 123213, 'Male', 'weqwqwe', 'qweqwew', NULL, '2024-03-03 09:20:11', '2024-03-03 09:20:11');
+(336, 'Tersita', 'Francisco ', 'Alonzo', '1990-03-12', 'alonzo@gmail.com', 2147483647, 'Female', 'Sta. Maria, Zamboanga City', 'Janitor', NULL, '2024-03-03 09:19:01', '2024-11-30 05:57:02'),
+(337, 'Pedro', 'Batumbakal', 'Franciso', '1995-02-01', 'Batumbakal@gmail.com', 997714457, 'Male', 'Mampang, Zamboanga City', 'Secretary', NULL, '2024-03-03 09:20:11', '2024-11-30 05:58:28');
 
 -- --------------------------------------------------------
 
@@ -251,8 +259,83 @@ CREATE TABLE `findings` (
 --
 
 INSERT INTO `findings` (`id`, `appointment_id`, `history`, `findings`, `diagnostics`, `prescription`, `created_at`) VALUES
-(23, 108, '', '', '', '', '2024-11-25 16:04:56'),
-(24, 109, '', '', '', '', '2024-11-25 16:12:48');
+(108, 213, 'Eye Redness', 'Due to excessiveness used of gadgets', 'Please make an eye glasses to protect the eyes', 'Eye drop water and drink biogesic 3 times a year', '2024-12-05 17:13:20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product`
+--
+
+CREATE TABLE `product` (
+  `id` int(11) NOT NULL,
+  `product_category_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` varchar(250) NOT NULL,
+  `price` varchar(100) NOT NULL,
+  `picture` varchar(100) NOT NULL,
+  `creaed_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_category`
+--
+
+CREATE TABLE `product_category` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` varchar(250) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `schedule`
+--
+
+CREATE TABLE `schedule` (
+  `id` int(11) NOT NULL,
+  `start_time` varchar(50) NOT NULL,
+  `end_time` varchar(50) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `service`
+--
+
+CREATE TABLE `service` (
+  `id` int(11) NOT NULL,
+  `service_category_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `price` varchar(50) NOT NULL,
+  `description` varchar(250) NOT NULL,
+  `picture` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_att` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `service_category`
+--
+
+CREATE TABLE `service_category` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` varchar(250) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -276,16 +359,17 @@ CREATE TABLE `users` (
   `province` varchar(100) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `zip_code` varchar(10) DEFAULT NULL
+  `zip_code` varchar(10) DEFAULT NULL,
+  `is_verified` tinyint(4) DEFAULT 0,
+  `verification_token` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `middle_name`, `last_name`, `email`, `password`, `birthdate`, `phone`, `gender`, `street_address`, `street_address_line_2`, `city`, `province`, `created_at`, `updated_at`, `zip_code`) VALUES
-(1, 'Carlo', 'Resaba', 'Hadjirul', 'carlo@gmail.com', '$2y$10$zfaUX1OMFCwqRcsCNKP5rOE6r87EhOBUSOhxQvQKOLOu46/ZcLHkS', '2014-11-05', '09977914457', 'male', 'Cristina home 1', 'Talon - Talon', 'Zamboanga City', 'Zamboaga Del Sur', '2024-10-30 05:28:34', '2024-11-21 15:26:18', '700'),
-(2, 'Jopel', NULL, 'Enriquez', 'jopel@gmail.com', '$2y$10$IEpwKvc8Yf/ZOfSM93pMf.2WBh5elFXZt1.KGlrNQNteXZJLBGd3W', '0000-00-00', '09380263077', 'male', 'Santol Drive', '', 'Zamboanga City', 'Zamboanga Del Sur', '2024-11-24 12:33:37', '2024-11-24 12:33:37', '7000');
+INSERT INTO `users` (`id`, `first_name`, `middle_name`, `last_name`, `email`, `password`, `birthdate`, `phone`, `gender`, `street_address`, `street_address_line_2`, `city`, `province`, `created_at`, `updated_at`, `zip_code`, `is_verified`, `verification_token`) VALUES
+(7, 'Jopel', NULL, 'Enriquez', 'jopel@gmail.com', '$2y$10$SbOoiXHfud0.twD7dHnFu..J9Ab/4wflgC7Xq1.1XrtWDPcB97WtC', '2000-12-16', '09977914457', 'male', 'Tumaga', 'Del Monte Street', 'Zamboanga City', 'Zamboanga Del Sur', '2024-12-05 13:58:06', '2024-12-05 15:25:48', '7000', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -361,7 +445,8 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `appointments`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_user_id` (`user_id`);
+  ADD KEY `fk_user_id` (`user_id`),
+  ADD KEY `fk_doctor_appointment` (`doctor_id`);
 
 --
 -- Indexes for table `appointmenttime`
@@ -377,11 +462,10 @@ ALTER TABLE `doctor`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `doctors`
+-- Indexes for table `doctor_schedule`
 --
-ALTER TABLE `doctors`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+ALTER TABLE `doctor_schedule`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `doctor_walkin`
@@ -401,7 +485,39 @@ ALTER TABLE `employee`
 --
 ALTER TABLE `findings`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `appointment_id` (`appointment_id`);
+  ADD KEY `fk_appointment` (`appointment_id`);
+
+--
+-- Indexes for table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_category_id` (`product_category_id`);
+
+--
+-- Indexes for table `product_category`
+--
+ALTER TABLE `product_category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `schedule`
+--
+ALTER TABLE `schedule`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `service`
+--
+ALTER TABLE `service`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `service_category_id` (`service_category_id`);
+
+--
+-- Indexes for table `service_category`
+--
+ALTER TABLE `service_category`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -424,7 +540,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=214;
 
 --
 -- AUTO_INCREMENT for table `appointmenttime`
@@ -436,19 +552,13 @@ ALTER TABLE `appointmenttime`
 -- AUTO_INCREMENT for table `doctor`
 --
 ALTER TABLE `doctor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `doctors`
---
-ALTER TABLE `doctors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `doctor_walkin`
 --
 ALTER TABLE `doctor_walkin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `employee`
@@ -460,13 +570,43 @@ ALTER TABLE `employee`
 -- AUTO_INCREMENT for table `findings`
 --
 ALTER TABLE `findings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+
+--
+-- AUTO_INCREMENT for table `product`
+--
+ALTER TABLE `product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `product_category`
+--
+ALTER TABLE `product_category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `schedule`
+--
+ALTER TABLE `schedule`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `service`
+--
+ALTER TABLE `service`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `service_category`
+--
+ALTER TABLE `service_category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables
@@ -477,13 +617,27 @@ ALTER TABLE `users`
 --
 ALTER TABLE `appointments`
   ADD CONSTRAINT `appointments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_doctor_appointment` FOREIGN KEY (`doctor_id`) REFERENCES `doctor` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `findings`
 --
 ALTER TABLE `findings`
-  ADD CONSTRAINT `findings_ibfk_1` FOREIGN KEY (`appointment_id`) REFERENCES `appointments` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `findings_ibfk_1` FOREIGN KEY (`appointment_id`) REFERENCES `appointments` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_appointment` FOREIGN KEY (`appointment_id`) REFERENCES `appointments` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`product_category_id`) REFERENCES `product_category` (`id`);
+
+--
+-- Constraints for table `service`
+--
+ALTER TABLE `service`
+  ADD CONSTRAINT `service_ibfk_1` FOREIGN KEY (`service_category_id`) REFERENCES `service_category` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

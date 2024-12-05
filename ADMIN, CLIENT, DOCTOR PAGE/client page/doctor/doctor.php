@@ -58,41 +58,22 @@ session_start();
                         <?php
                             $Doctor_array = array(
                                 array(
-                                    'dname' => 'Dr. Jose Morales',
-                                    'experience' => 'Dr. Rosales is a..',
-                                    'email' => 'JoseRosale@gmaill.com',
-                                    'bdate' => '12/3/1988',
+                                    'dname' => 'Dr. Ong Lim',
+                                    'experience' => 'Dr. Ong is a for..',
+                                    'email' => 'OngLim@gmaill.com',
+                                    'rating' => '4.5',
+                         'action' => '<button type="button" class="btn btn-info fw-bold fs-6" type="button" data-bs-toggle="modal" data-bs-target="#addDoctorModal"><span class="fa fa-eye px-2"></span>View</button>'
+
+                                ),
+                                array(
+                                    'dname' => 'Dr. Rosalinda Lim',
+                                    'experience' => 'Dr. Rosalalinda is a..',
+                                    'email' => 'Rosalinda@gmaill.com',
                                     'rating' => '5/5',
                                     'action' => '<button type="button" class="btn btn-info fw-bold fs-6" type="button" data-bs-toggle="modal" data-bs-target="#addDoctorModal"><span class="fa fa-eye px-2"></span>View</button>'
 
-                                ),
-                                array(
-                                    'dname' => 'Dr. Camille Chua',
-                                    'experience' => 'Dr. Chua is a for..',
-                                    'email' => 'chuacamille@gmaill.com',
-                                    'bdate' => '11/4/1980',
-                                    'rating' => '4.5',
-                                    'action' => '<button type="button" class="btn btn-info fw-bold fs-6 "><span class="fa fa-eye px-2"></span>View</button>'
-
-                                ),
-                                array(
-                                    'dname' => 'Dr. Nicole Lim',
-                                    'experience' => 'Dr. Lim has a..',
-                                    'email' => 'NicoleLim@gmaill.com',
-                                    'bdate' => '9/15/1990',
-                                    'rating' => '4.2/5',
-                                    'action' => '<button type="button" class="btn btn-info fw-bold fs-6 "><span class="fa fa-eye px-2"></span>View</button>'
-
-                                ),
-                                array(
-                                    'dname' => 'Dr. Juan Karlos',
-                                    'experience' => 'Dr. Camille Chua',
-                                    'email' => 'juankarlos@gmaill.com',
-                                    'bdate' => 'Eye Glasses',
-                                    'rating' => '12/10/20',
-                                    'action' => '<button type="button" class="btn btn-info fw-bold fs-6 "><span class="fa fa-eye px-2"></span>View</button>'
-
                                 )
+                              
             
                             );
                         ?>
@@ -103,22 +84,20 @@ session_start();
                                     <th scope="col">Doctor's Name</th>
                                     <th scope="col">Experience</th>
                                     <th scope="col">Email</th>
-                                    <th scope="col">Birthdate</th>
                                     <th scope="col">Ratings</th>
                                     <th scope="col" width="22%" class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                    $counter = 5;
+                                    $counter = 1;
                                     foreach ($Doctor_array as $item){
                                 ?>
-                                        <tr>
+                                        <tr class = "text-center">
                                             <td><?= $counter ?></td>
                                             <td><?= $item['dname'] ?></td>
                                             <td><?= $item['experience'] ?></td>
                                             <td><?= $item['email'] ?></td>
-                                            <td><?= $item['bdate'] ?></td>
                                             <td><?= $item['rating'] ?></td>
                                             <td class = "text-center"><?= $item['action'] ?></td>
                                         </tr>
@@ -141,7 +120,7 @@ session_start();
             <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="row">
                     <div class="modal-title col-7">
-                       <h5 class = "modal-title fs-4 fw-bold pb-0">Dr. Jose Rosales</h5>
+                       <h5 class = "modal-title fs-4 fw-bold pb-0">Dr. Ong Lim</h5>
                        <p class = "text-gray pt-0">35 years old</p>
                        <p class = "fs-6" style = "font-size:5px;"> 15 years of dedicated practice in optometry, specializing in pediatric vision care and advanced contact lens fittings. Dr. Smith has expertly diagnosed and managed various eye conditions, employing the latest technologies to provide precise solutions for each patient's unique needs.  </p>
                        <i class="fa fa-star fs-4 p-2"></i>
